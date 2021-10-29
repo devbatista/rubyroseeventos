@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AgendamentoController;
+use App\Http\Controllers\Api\CgendamentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/agendamento', [AgendamentoController::class, 'index']);
-Route::post('/agendamento', [AgendamentoController::class, 'create']);
-Route::get('/agendamento/horas-inativas', [AgendamentoController::class, 'getHorasInativas']);
+Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
+Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
+Route::get('/credenciamento/horas-inativas', [CredenciamentoController::class, 'getHorasInativas']);

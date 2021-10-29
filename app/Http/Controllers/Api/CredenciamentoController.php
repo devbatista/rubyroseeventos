@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Agendamento;
 use App\Models\Pessoa;
 
-class AgendamentoController extends Controller
+class CredenciamentoController extends Controller
 {
     public function index()
     {
