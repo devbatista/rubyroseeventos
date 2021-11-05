@@ -32,6 +32,7 @@ class CredenciamentoController extends Controller
             'whatsapp' => 'string|max:20|nullable',
             'instagram' => 'required|string|max:30',
             'data_hora' => 'required|date_format:d-m-Y H:i',
+            'confirmacao' => 'required',
         ]);
 
         if($validator->fails()) {
