@@ -22,7 +22,7 @@ class CredenciamentoController extends Controller
 
         $validator = Validator::make($data, [
             'nome' => 'required|string|max:100',
-            'dt_nascimento' => 'required|date_format:Y-m-d',
+            'dt_nascimento' => 'required|date_format:d-m-Y',
             'cpf' => 'required|max:15|cpf|unique:pessoas,cpf',
             'email' => 'required|string|max:100|email|unique:pessoas,email',
             'cidade' => 'required|string|max:100',
@@ -31,13 +31,15 @@ class CredenciamentoController extends Controller
             'telefone' => 'required|string|max:20',
             'whatsapp' => 'string|max:20|nullable',
             'instagram' => 'required|string|max:30',
-            'data_hora_agendamento' => 'required|date_format:Y-m-d H:i',
+            'data_hora' => 'required|date_format:d-m-Y H:i',
         ]);
 
         if($validator->fails()) {
             $retorno['error'] = $validator->errors()->first();
             return $retorno;
         }
+
+        dd($data);
 
         $pessoa = $this->addPessoa($data, new Pessoa);
         $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
