@@ -54,7 +54,7 @@ class CredenciamentoController extends Controller
             return $retorno;
         }
 
-        $this->enviaEmail($data);
+        // $this->enviaEmail($data);
 
         $retorno['list'] = $data;
 
