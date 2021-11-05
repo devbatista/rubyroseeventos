@@ -29,3 +29,12 @@ Route::get('pdf', [PdfController::class, 'getPdf']);
 Route::get('pdf2', function(){
     return view('pdf', ['salve' => 'salve']);
 });
+
+Route::get('envio-email', function() {
+    Illuminate\Support\facades\Mail::send(new \App\Mail\newCredenciamento());
+    // return new \App\Mail\newCredenciamento();
+});
+
+Route::get('email', function() {
+    return view('mail', ['salve' => 'salve']);
+});

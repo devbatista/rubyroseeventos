@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Agendamento;
 use App\Models\Pessoa;
+use Illuminate\Support\Facades\Mail;
 
 class CredenciamentoController extends Controller
 {
+    public $mailer;
+
     public function index()
     {
         die('Requisição inválida');
@@ -35,17 +38,18 @@ class CredenciamentoController extends Controller
             'confirmacao' => 'required',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             $retorno['error'] = $validator->errors()->first();
             return $retorno;
         }
 
-        dd($data);
+        $data['dt_nascimento'] = date('Y-m-d', strtotime($data['dt_nascimento']));
+        $data['data_hora'] = date('Y-m-d H:i', strtotime($data['data_hora']));
 
         $pessoa = $this->addPessoa($data, new Pessoa);
         $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
 
-        if(!$agendamento) {
+        if (!$agendamento) {
             $retorno['error'] = 'Agendamento não concluído, atualize a página e tente novamente';
             return $retorno;
         }
@@ -67,18 +71,18 @@ class CredenciamentoController extends Controller
             '23-11-2021' => []
         ];
 
-        foreach($datas as $data => $array) {
-            foreach($agendamentos as $agendamento) {
+        foreach ($datas as $data => $array) {
+            foreach ($agendamentos as $agendamento) {
                 if ($data == date('d-m-Y', strtotime($agendamento->data_hora))) {
                     $datas[$data][] = [
-                        'total' => $agendamento->total, 
+                        'total' => $agendamento->total,
                         'horario' => date('H:i', strtotime($agendamento->data_hora)),
                         'status' => ($agendamento->total < 80) ? 'active' : 'inactive',
                     ];
                 }
             }
         }
-        
+
         return $datas;
     }
 
@@ -101,17 +105,21 @@ class CredenciamentoController extends Controller
 
     private function addAgendamento($data, $id, Agendamento $agendamento)
     {
-        $dataHora = $data['data_agendamento'] . ' ' . $data['hora_agendamento'];
-
         $agendamento->pessoa = $id;
-        $agendamento->data_hora = $dataHora;
+        $agendamento->data_hora = $data['data_hora'];
         $agendamento->save();
-        
+
         return $agendamento;
     }
 
     private function enviaEmail($data)
     {
+        $diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+        $semana = date('w', strtotime($data['data_hora']));
 
+        $data['dia_semana'] = $diaSemana[$semana];
+        dd($data);
+        
+        Mail::send(new \App\Mail\newCredenciamento($data));
     }
 }

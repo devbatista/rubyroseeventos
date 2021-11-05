@@ -84,7 +84,17 @@
             </td>
         </tr>
     </table>
-    
+    <br />
+    <br />
+    <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;'>
+        <tr>
+            <td style="height: 60px;max-width: 600px;margin: 0 auto;background-color: #fb5373; display: flex">
+                <a href="#"
+                    style="color: #fff;text-decoration: none; margin: auto; display: flex;">
+                    <p>DOWNLOAD AGENDAMENTO</p> <img style="margin-left: 15px;" src="https://rubyroseeventos.com.br/wp-content/uploads/2021/11/pdf.png" alt="pdf" /></a>
+            </td>
+        </tr>
+    </table>
     <br />
     <br />
     <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;'>
@@ -92,7 +102,7 @@
             <td style="width: 33.3%; align-items: center;">
                 <img style="margin-right: 10px;"
                     src="https://rubyroseeventos.com.br/wp-content/uploads/2021/11/instagram.png"
-                    alt="instagram" /><p>@rubyrosebrasil</p>
+                    alt="instagram" />@rubyrosebrasil
             </td>
             <td style="width: 33.3%; align-items: center;">
                 <img style="margin-right: 10px;"
