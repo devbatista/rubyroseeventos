@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CredenciamentoController;
+use App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
 Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
 Route::get('/credenciamento/horas-inativas', [CredenciamentoController::class, 'getHorasInativas']);
+
+Route::get('pdf', [PdfController::class, 'getPdf']);
+
+Route::get('pdf2', function(){
+    return view('pdf', ['salve' => 'salve']);
+});

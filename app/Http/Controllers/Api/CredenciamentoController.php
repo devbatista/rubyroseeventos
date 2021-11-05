@@ -31,8 +31,7 @@ class CredenciamentoController extends Controller
             'telefone' => 'required|string|max:20',
             'whatsapp' => 'string|max:20|nullable',
             'instagram' => 'required|string|max:30',
-            'data_agendamento' => 'required|date_format:Y-m-d',
-            'hora_agendamento' => 'required|date_format:H:i'
+            'data_hora_agendamento' => 'required|date_format:Y-m-d H:i',
         ]);
 
         if($validator->fails()) {
@@ -42,6 +41,13 @@ class CredenciamentoController extends Controller
 
         $pessoa = $this->addPessoa($data, new Pessoa);
         $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
+
+        if(!$agendamento) {
+            $retorno['error'] = 'Agendamento não concluído, atualize a página e tente novamente';
+            return $retorno;
+        }
+
+        $this->enviaEmail($data);
 
         $retorno['list'] = $data;
 
@@ -99,5 +105,10 @@ class CredenciamentoController extends Controller
         $agendamento->save();
         
         return $agendamento;
+    }
+
+    private function enviaEmail($data)
+    {
+
     }
 }
