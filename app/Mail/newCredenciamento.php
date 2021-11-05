@@ -10,15 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class newCredenciamento extends Mailable
 {
     use Queueable, SerializesModels;
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -29,7 +30,7 @@ class newCredenciamento extends Mailable
     public function build()
     {
         $this->subject('noreply - Credenciamento Ruby Rose');
-        $this->to('batist11@gmail.com', 'Rafael');
-        return $this->view('mail', ['salve' => 'salve']);
+        $this->to($this->data['email'], $this->data['nome']);
+        return $this->view('mail', ['data' => $this->data]);
     }
 }

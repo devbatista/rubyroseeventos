@@ -24,10 +24,18 @@ Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
 Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
 Route::get('/credenciamento/horas-inativas', [CredenciamentoController::class, 'getHorasInativas']);
 
-Route::get('pdf', [PdfController::class, 'getPdf']);
+Route::get('download-doc', [PdfController::class, 'getPdf']);
 
 Route::get('pdf2', function(){
-    return view('pdf', ['salve' => 'salve']);
+    $data = [
+        'nome' => 'Rafael Batista',
+        'email' => 'batist11@gmail.com',
+        'data_hora' => '2021-11-21 15:30',
+        'cpf' => '399.328.998-60',
+    ];
+
+    $data['dia_semana'] = 'sabado';
+    return view('pdf', ['data' => $data]);
 });
 
 Route::get('envio-email', function() {

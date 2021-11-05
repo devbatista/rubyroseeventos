@@ -54,7 +54,9 @@ class CredenciamentoController extends Controller
             return $retorno;
         }
 
-        // $this->enviaEmail($data);
+        $data['agendamento'] = $agendamento;
+
+        $this->enviaEmail($data);
 
         $retorno['list'] = $data;
 
@@ -109,16 +111,15 @@ class CredenciamentoController extends Controller
         $agendamento->data_hora = $data['data_hora'];
         $agendamento->save();
 
-        return $agendamento;
+        return $agendamento->id;
     }
 
     private function enviaEmail($data)
     {
-        $diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+        $diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
         $semana = date('w', strtotime($data['data_hora']));
 
         $data['dia_semana'] = $diaSemana[$semana];
-        dd($data);
         
         Mail::send(new \App\Mail\newCredenciamento($data));
     }
