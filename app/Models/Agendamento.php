@@ -20,4 +20,15 @@ class Agendamento extends Model
 
         return $retorno;
     }
+
+    public function getAgendamento($id)
+    {
+        $retorno = DB::table('agendamentos as a')
+            -> select('a.id', 'p.nome', 'p.cpf', 'a.data_hora')
+            ->join('pessoas as p', 'p.id', '=', 'a.pessoa')
+            ->where('a.id', '=', $id)
+            ->first();
+        
+        return $retorno;
+    }
 }

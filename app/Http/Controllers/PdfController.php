@@ -3,24 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Agendamento;
 use PDF;
 
 class PdfController extends Controller
 {
-    public function getPdf(Request $request)
+    public function getPdf(Request $request, Agendamento $agendamento)
     {
+        $data = $request->only('agendamento');
+        $agendamento = $agendamento->getAgendamento($data['agendamento']);
+
+        $agendamento->data = date('d/m/Y', strtotime($agendamento->data_hora));
+        $agendamento->hora = date('H:i', strtotime($agendamento->data_hora));
         
-        $data = [
-            'nome' => 'Rafael Batista',
-            'email' => 'batist11@gmail.com',
-            'data_hora' => '2021-11-21 15:30',
-            'cpf' => '399.328.998-60',
-        ];
+        $diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
+        $semana = date('w', strtotime($agendamento->data_hora));
 
-        $data['dia_semana'] = 'sabado';
+        $agendamento->dia_semana = $diaSemana[$semana];
 
-        $pdf = PDF::loadView('pdf', ['data' => $data]);
+        $pdf = PDF::loadView('pdf', ['agendamento' => $agendamento]);
 
-        return $pdf->setPaper('a4')->stream();
+        return $pdf->setPaper('a4')->download('agendamento.pdf');
     }
 }

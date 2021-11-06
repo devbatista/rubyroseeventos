@@ -33,7 +33,7 @@ class CredenciamentoController extends Controller
             'pais' => 'string|max:50|nullable',
             'telefone' => 'required|string|max:20',
             'whatsapp' => 'string|max:20|nullable',
-            'instagram' => 'required|string|max:30',
+            'instagram' => 'nullable|string|max:30',
             'data_hora' => 'required|date_format:d-m-Y H:i',
             'confirmacao' => 'required',
         ]);
