@@ -104,8 +104,55 @@ class CredenciamentoController extends Controller
         return $datas;
     }
 
-    public function getAgendamentos()
+    public function getAgendamentos(Request $request)
     {
+        $data = $request->only('type', 'admin');
+        
+        if(!$data) {
+            die('Requisição inválida');
+        }
+
+        $validTypes = ['data', 'total'];
+        $validEmails = ['thzago@outlook.com', 'batist11@gmail.com'];
+
+        if(!in_array($data['type'], $validTypes) || !in_array($data['admin'], $validEmails)) {
+            die('Requisição inválida 2');
+        }
+
+        switch ($data['type']) {
+            case 'data':
+                $dados = $this->getAgendamentosByData();
+                break;
+
+            case 'total':
+                $dados = Agendamento::count();
+                break;
+        }
+
+        return $dados;
+    }
+
+    private function getAgendamentosByData()
+    {
+        $agendamentos = Agendamento::get();
+        $datas = [
+            '20-11-2021' => [],
+            '21-11-2021' => [],
+            '22-11-2021' => [],
+            '23-11-2021' => []
+        ];
+
+        foreach ($datas as $data => $array) {
+            $count = 0;
+            foreach ($agendamentos as $agendamento) {
+                if ($data == date('d-m-Y', strtotime($agendamento->data_hora))) {
+                    $count++;
+                    $datas[$data] = $count;
+                }
+            }
+        }
+
+        return $datas;
     }
 
     private function addPessoa($data, Pessoa $pessoa)

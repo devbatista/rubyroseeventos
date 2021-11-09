@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
 Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
 Route::get('/credenciamento/horas-inativas', [CredenciamentoController::class, 'getHorasInativas']);
+Route::get('/admin/agendamentos', [CredenciamentoController::class, 'getAgendamentos']);
 
 Route::get('download-doc', [PdfController::class, 'getPdf']);
 

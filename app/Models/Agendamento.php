@@ -16,7 +16,9 @@ class Agendamento extends Model
         $retorno = DB::table('agendamentos')
             ->select('data_hora', DB::raw('count(*) as total'))
             ->groupBy('data_hora')
-            ->get();
+            ->toSql();
+
+        dd($retorno);
 
         return $retorno;
     }
@@ -30,5 +32,9 @@ class Agendamento extends Model
             ->first();
         
         return $retorno;
+    }
+
+    public function getAgendamentosByData() {
+        // $retorno = DB::
     }
 }
