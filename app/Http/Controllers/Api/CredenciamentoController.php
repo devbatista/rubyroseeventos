@@ -23,6 +23,22 @@ class CredenciamentoController extends Controller
         $retorno = ['error' => null, 'list' => []];
         $data = $request->all();
 
+        $horarios = $this->getHorasInativas(new Agendamento());
+        $data_hora = explode(' ', $data['data_hora']);
+
+        foreach ($horarios as $dia => $horario) {
+            if ($data_hora[0] == $dia) {
+                foreach ($horario as $hora) {
+                    if ($data_hora[1] == $hora['horario']) {
+                        if($hora['total'] >= 80) {
+                            $retorno['error'] = 'Horário atingiu o limite de agendamento, por favor, escolhe outro!';
+                            return $retorno;
+                        }
+                    }
+                }
+            }
+        }
+
         $validator = Validator::make($data, [
             'nome' => 'required|string|max:100',
             'dt_nascimento' => 'required|date_format:d-m-Y',
@@ -88,6 +104,10 @@ class CredenciamentoController extends Controller
         return $datas;
     }
 
+    public function getAgendamentos()
+    {
+    }
+
     private function addPessoa($data, Pessoa $pessoa)
     {
         $pessoa->nome = $data['nome'];
@@ -120,7 +140,7 @@ class CredenciamentoController extends Controller
         $semana = date('w', strtotime($data['data_hora']));
 
         $data['dia_semana'] = $diaSemana[$semana];
-        
+
         Mail::send(new \App\Mail\newCredenciamento($data));
     }
 }
