@@ -31,7 +31,7 @@ class CredenciamentoController extends Controller
                 foreach ($horario as $hora) {
                     if ($data_hora[1] == $hora['horario']) {
                         if($hora['total'] >= 80) {
-                            $retorno['error'] = 'Horário atingiu o limite de agendamento, por favor, escolhe outro!';
+                            $retorno['error'] = 'O horário escolhido atingiu o limite de agendamento. Por favor, escolha outro :)';
                             return $retorno;
                         }
                     }
