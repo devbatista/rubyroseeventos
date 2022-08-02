@@ -29,10 +29,10 @@ Route::get('download-doc', [PdfController::class, 'getPdf']);
 
 Route::get('pdf2', function(){
     $data = [
-        'nome' => 'Rafael Batista',
-        'email' => 'batist11@gmail.com',
+        'nome' => 'Sal Ve',
+        'email' => 'salve@gmail.com',
         'data_hora' => '2021-11-21 15:30',
-        'cpf' => '399.328.998-60',
+        'cpf' => '306.123.522-09',
     ];
 
     $data['dia_semana'] = 'sabado';
