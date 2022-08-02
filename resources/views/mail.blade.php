@@ -12,7 +12,7 @@
 <body>
     <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;'>
         <tr>
-            <td width="400px" style="background-color: #fb5373; color: #fff; padding: 15px;">
+            <td width="400px" style="background-color: #e54583; color: #fff; padding: 15px;">
                 <table>
                     <tr>
                         <td>
@@ -68,7 +68,7 @@
                 </table>
             </td>
             <td width="400px"
-                style='font-family: "Montserrat"; color: #fb5373;font-size: 50px;font-weight: 700;text-align: center;'>
+                style='font-family: "Montserrat"; color: #e54583;font-size: 50px;font-weight: 700;text-align: center;'>
                 <table style='font-family: "Montserrat' cellpadding="4" align="center">
                     <tr>
                         <td>
@@ -84,13 +84,13 @@
     <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;' cellspacing="10">
         <tr>
             <td
-                style='margin: 5px 0;border: 2px solid #fb5373;height: 40px;font-size: 18px;padding-left: 10px;color: #fb5373;'>
+                style='margin: 5px 0;border: 2px solid #e54583;height: 40px;font-size: 18px;padding-left: 10px;color: #e54583;'>
                 <p style="margin: 10px 0">Nome: {{ $data['nome'] }}</p>
             </td>
         </tr>
         <tr style="margin-top: 10px">
             <td
-                style='margin: 5px 0;border: 2px solid #fb5373;height: 40px;font-size: 18px;padding-left: 10px;color: #fb5373;'>
+                style='margin: 5px 0;border: 2px solid #e54583;height: 40px;font-size: 18px;padding-left: 10px;color: #e54583;'>
                 <p style="margin: 10px 0">CPF: {{ $data['cpf'] }}</p>
             </td>
         </tr>
@@ -103,7 +103,7 @@
                 <table style="margin: auto">
                     <tr>
                         <td>
-                            <div style='font-size: 16px;color: #fb5373;margin: 15px;text-align: justify;'>
+                            <div style='font-size: 16px;color: #e54583;margin: 15px;text-align: justify;'>
                                 <strong>Olá</strong><br />
                                 Recebemos sua inscrição com sucesso para entrada no showroom Ruby<br />
                                 Rose. O convite é nominal e intransferível. Para sua segurança,
@@ -144,7 +144,7 @@
     <br />
     <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;'>
         <tr>
-            <td style="height: 60px;max-width: 600px;margin: 0 auto;background-color: #fb5373; display: flex">
+            <td style="height: 60px;max-width: 600px;margin: 0 auto;background-color: #e54583; display: flex">
                 <a href="https://api.rubyroseeventos.com.br/pdf?agendamento={{ $data['agendamento'] }}"
                     style="color: #fff;text-decoration: none; margin: auto; display: flex;">
                     <table>
