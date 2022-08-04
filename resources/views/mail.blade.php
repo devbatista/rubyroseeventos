@@ -18,7 +18,7 @@
                         <td>
                             <div>
                                 CREDENCIAMENTO STAND RUBY ROSE<br />
-                                BEAUTY FAIR 2021
+                                BEAUTY FAIR {{ date('Y') }}
                             </div>
                         </td>
                     </tr>
