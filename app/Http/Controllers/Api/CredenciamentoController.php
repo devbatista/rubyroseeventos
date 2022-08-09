@@ -67,8 +67,6 @@ class CredenciamentoController extends Controller
             return $retorno;
         }
 
-        print_r($data);exit;
-
         $pessoa = $this->addPessoa($data, new Pessoa);
         $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
 
