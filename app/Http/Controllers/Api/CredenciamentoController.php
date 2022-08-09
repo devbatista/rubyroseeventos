@@ -62,6 +62,13 @@ class CredenciamentoController extends Controller
         $data['dt_nascimento'] = date('Y-m-d', strtotime($data['dt_nascimento']));
         $data['data_hora'] = date('Y-m-d H:i', strtotime($data['data_hora']));
 
+        if ($data['data_hora'] < date('Y', strtotime('2022'))) {
+            $retorno['error'] = 'Erro ao salvar os dados, limpe cookies e cache do seu navegador e tente novamente';
+            return $retorno;
+        }
+
+        print_r($data);exit;
+
         $pessoa = $this->addPessoa($data, new Pessoa);
         $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
 
