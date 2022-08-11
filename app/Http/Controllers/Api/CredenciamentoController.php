@@ -142,7 +142,13 @@ class CredenciamentoController extends Controller
         $total = 64 * 80;
         $disponiveis = $total - $cadastros;
 
-        return $disponiveis;
+        $dados = [
+            'cadastros' => $cadastros,
+            'total de vagas' => $total,
+            'disponiveis' => $disponiveis,
+        ];
+
+        return $dados;
     }
 
     private function getAgendamentosByData()
