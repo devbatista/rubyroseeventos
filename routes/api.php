@@ -25,6 +25,8 @@ Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
 Route::get('/credenciamento/horas-inativas', [CredenciamentoController::class, 'getHorasInativas']);
 Route::get('/admin/agendamentos', [CredenciamentoController::class, 'getAgendamentos']);
 
+Route::get('/vagas-disponiveis', [CredenciamentoController::class, 'getVagasDisponiveis']);
+
 Route::get('download-doc', [PdfController::class, 'getPdf']);
 
 Route::get('pdf2', function(){
