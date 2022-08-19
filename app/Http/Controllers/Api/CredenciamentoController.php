@@ -100,7 +100,7 @@ class CredenciamentoController extends Controller
                     $datas[$data][] = [
                         'total' => $agendamento->total,
                         'horario' => date('H:i', strtotime($agendamento->data_hora)),
-                        'status' => ($agendamento->total < 80) ? 'active' : 'inactive',
+                        'status' => ($agendamento->total < 64) ? 'active' : 'inactive',
                     ];
                 }
             }
