@@ -141,6 +141,7 @@ class CredenciamentoController extends Controller
         $cadastros = Agendamento::count();
         $total = 64 * 80;
         $disponiveis = $total - $cadastros;
+        $disponiveis = ($disponiveis > 0) ? $total - $cadastros : 0;
 
         $dados = [
             'cadastros' => $cadastros,
