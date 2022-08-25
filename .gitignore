@@ -21,4 +21,4 @@ public/error_log
 public/php.ini
 load_font
 resources/views/cadastro.blade.php
-resources/views/cadastro.blade2.php
+resources/views/cadastro2.blade.php
