@@ -20,6 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/cadastro_2', function() {
+    return view('cadastro2');
+});
+
 Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
 Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
 Route::get('/credenciamento/horas-inativas', [CredenciamentoController::class, 'getHorasInativas']);
