@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Agendamento;
 use App\Models\Pessoa;
+use App\Models\AgendamentoMelu;
+use App\Models\PessoaMelu;
 use Illuminate\Support\Facades\Mail;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CredenciamentoController extends Controller
 {
@@ -15,10 +18,15 @@ class CredenciamentoController extends Controller
 
     public function index()
     {
-        die('Requisição inválida');
+        return QrCode::size(300)->generate('https://instagram.com/rbatist10');
     }
 
-    public function create(Request $request)
+    public function create_melu(Request $request)
+    {
+        $this->create($request, true);
+    }
+
+    public function create(Request $request, $melu = false)
     {
         $retorno = ['error' => null, 'list' => []];
         $data = $request->all();
@@ -59,16 +67,34 @@ class CredenciamentoController extends Controller
             return $retorno;
         }
 
+        $datas_validas = [
+            '2023-09-03',
+            '2023-09-03',
+            '2023-09-03',
+            '2023-09-03',
+        ];
+
         $data['dt_nascimento'] = date('Y-m-d', strtotime($data['dt_nascimento']));
         $data['data_hora'] = date('Y-m-d H:i', strtotime($data['data_hora']));
+
+        if (!in_array($data['data_hora'], $datas_validas)) {
+            $retorno['error'] = 'Requisição inválida, limpe o cache de navegação em seguida atualize a página, e tente novamente!';
+            return $retorno;
+        }
 
         if ($data['data_hora'] < date('Y', strtotime('2022'))) {
             $retorno['error'] = 'Erro ao salvar os dados, limpe cookies e cache do seu navegador e tente novamente';
             return $retorno;
         }
+        
 
-        $pessoa = $this->addPessoa($data, new Pessoa);
-        $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
+        if (!$melu) {
+            $pessoa = $this->addPessoa($data, new Pessoa);
+            $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
+        } else {
+            $pessoa = $this->addPessoaMelu($data, new PessoaMelu);
+            $agendamento = $this->addAgendamentoMelu($data, $pessoa->id, new AgendamentoMelu);
+        }
 
         if (!$agendamento) {
             $retorno['error'] = 'Agendamento não concluído, atualize a página e tente novamente';
@@ -192,7 +218,33 @@ class CredenciamentoController extends Controller
         return $pessoa;
     }
 
+    private function addPessoaMelu($data, PessoaMelu $pessoa)
+    {
+        $pessoa->nome = $data['nome'];
+        $pessoa->dt_nascimento = $data['dt_nascimento'];
+        $pessoa->cpf = $data['cpf'];
+        $pessoa->email = $data['email'];
+        $pessoa->cidade = $data['cidade'];
+        $pessoa->estado = $data['estado'];
+        $pessoa->pais = (isset($data['pais'])) ? $data['pais'] : null;
+        $pessoa->telefone = $data['telefone'];
+        $pessoa->whatsapp = (isset($data['whatsapp'])) ? $data['whatsapp'] : null;
+        $pessoa->instagram = $data['instagram'];
+        $pessoa->save();
+
+        return $pessoa;
+    }
+
     private function addAgendamento($data, $id, Agendamento $agendamento)
+    {
+        $agendamento->pessoa = $id;
+        $agendamento->data_hora = $data['data_hora'];
+        $agendamento->save();
+
+        return $agendamento->id;
+    }
+
+    private function addAgendamentoMelu($data, $id, AgendamentoMelu $agendamento)
     {
         $agendamento->pessoa = $id;
         $agendamento->data_hora = $data['data_hora'];
