@@ -20,5 +20,6 @@ public/.user.ini
 public/error_log
 public/php.ini
 load_font
+composer.lock
 resources/views/cadastro.blade.php
 resources/views/cadastro2.blade.php
