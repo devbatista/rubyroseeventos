@@ -329,8 +329,6 @@ class CredenciamentoController extends Controller
 
         $data['dia_semana'] = $diaSemana[$semana];
 
-        return view('mail', ['data' => $data]);
-
         Mail::send(new \App\Mail\newCredenciamento($data));
     }
 
