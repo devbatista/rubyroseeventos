@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CredenciamentoController;
 use App\Http\Controllers\PdfController;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,12 @@ Route::get('/cadastro_2', function() {
 
 Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
 Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
+Route::post('/melu/credenciamento', [CredenciamentoController::class, 'createMelu']);
 Route::get('/credenciamento/horas-inativas', [CredenciamentoController::class, 'getHorasInativas']);
 Route::get('/admin/agendamentos', [CredenciamentoController::class, 'getAgendamentos']);
+
+Route::get('/ruby-rose/{hash}', [CredenciamentoController::class, 'validateRubyRoseQrCode']);
+Route::get('/melu/{hash}', [CredenciamentoController::class, 'validateMeluQrCode']);
 
 Route::get('/vagas-disponiveis', [CredenciamentoController::class, 'getVagasDisponiveis']);
 
@@ -39,10 +44,15 @@ Route::get('pdf2', function(){
         'email' => 'salve@gmail.com',
         'data_hora' => '2021-11-21 15:30',
         'cpf' => '306.123.522-09',
+        'hash' => '0ba3ba56d03369234f9a718a4759f863',
+        'agendamento' => 'salve'
     ];
 
+    $url = 'https://api.rubyroseeventos.com.br/ruby-rose/'. $data['hash'];
+    $data['qrcode'] = QrCode::size(300)->generate($url);
+
     $data['dia_semana'] = 'sabado';
-    return view('pdf', ['data' => $data]);
+    return view('mail', ['data' => $data]);
 });
 
 Route::get('pdf', [PdfController::class, 'getPdf']);

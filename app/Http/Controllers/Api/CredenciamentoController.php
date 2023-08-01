@@ -68,7 +68,7 @@ class CredenciamentoController extends Controller
         }
 
         $datas_validas = [
-            '2023-09-03',
+            '2022-09-04',
             '2023-09-03',
             '2023-09-03',
             '2023-09-03',
@@ -76,32 +76,34 @@ class CredenciamentoController extends Controller
 
         $data['dt_nascimento'] = date('Y-m-d', strtotime($data['dt_nascimento']));
         $data['data_hora'] = date('Y-m-d H:i', strtotime($data['data_hora']));
+        $data_escolhida = date('Y-m-d', strtotime($data['data_hora']));
 
-        if (!in_array($data['data_hora'], $datas_validas)) {
+        if ((!in_array($data_escolhida, $datas_validas))) {
             $retorno['error'] = 'Requisição inválida, limpe o cache de navegação em seguida atualize a página, e tente novamente!';
             return $retorno;
         }
 
-        if ($data['data_hora'] < date('Y', strtotime('2022'))) {
-            $retorno['error'] = 'Erro ao salvar os dados, limpe cookies e cache do seu navegador e tente novamente';
-            return $retorno;
-        }
-        
+        $data['hash'] = md5(time());
 
         if (!$melu) {
             $pessoa = $this->addPessoa($data, new Pessoa);
             $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
+            $agendamento_melu = $agendamento ? true : false;
         } else {
-            $pessoa = $this->addPessoaMelu($data, new PessoaMelu);
-            $agendamento = $this->addAgendamentoMelu($data, $pessoa->id, new AgendamentoMelu);
+            $pessoa_melu = $this->addPessoaMelu($data, new PessoaMelu);
+            $agendamento_melu = $this->addAgendamentoMelu($data, $pessoa_melu->id, new AgendamentoMelu);
+            $agendamento = $agendamento_melu ? true : false;
         }
 
-        if (!$agendamento) {
+        if (!$agendamento || !$agendamento_melu) {
             $retorno['error'] = 'Agendamento não concluído, atualize a página e tente novamente';
             return $retorno;
         }
 
-        $data['agendamento'] = $agendamento;
+        $data['agendamento'] = is_array($agendamento) ? $agendamento : $agendamento_melu;
+
+        $evento = $melu ? 'melu' : 'ruby-rose';
+        $data['qrcode'] = $this->generateQrCode($data['hash'], $evento);
 
         $this->enviaEmail($data);
 
@@ -178,6 +180,71 @@ class CredenciamentoController extends Controller
         return $dados;
     }
 
+    public function validateRubyRoseQrCode($hash) 
+    {
+        $retorno = ['error' => null, 'list' => []];
+        $qrcode = $this->validateQrCode($hash, 'ruby-rose');
+
+        if (!$qrcode) {
+            $retorno['error'] = 'Cadastro já presente no evento da Ruby Rose';
+            return $retorno;
+        }
+
+        $retorno['list'] = [
+            'msg' => 'Seja bem vindo ao evento da Ruby Rose, '.$qrcode->nome
+        ];
+
+        return $retorno;
+    }
+
+    public function validateMeluQrCode($hash) 
+    {
+        $retorno = ['error' => null, 'list' => []];
+        $qrcode = $this->validateQrCode($hash, 'melu');
+
+        if (!$qrcode) {
+            $retorno['error'] = 'Cadastro já presente no evento da Melu';
+            return $retorno;
+        }
+
+        $retorno['list'] = [
+            'msg' => 'Seja bem vindo ao evento da Melu '. $qrcode->nome
+        ];
+
+        return $retorno;
+    }
+
+    private function validateQrCode($hash, $evento)
+    {
+        switch ($evento) {
+            case 'melu':
+                $pessoa = PessoaMelu::where(['hash' => $hash])->first();
+                $agendamento = AgendamentoMelu::where(['pessoa' => $pessoa->id])->first();
+                if (!$agendamento->used) {
+                    $agendamento->used = true;
+                    $agendamento->save();
+                } else {
+                    return false;
+                }
+                return $pessoa;
+                break;
+            case 'ruby-rose':
+                $pessoa = Pessoa::where(['hash' => $hash])->first();
+                $agendamento = Agendamento::where(['pessoa' => $pessoa->id])->first();
+                if (!$agendamento->used) {
+                    $agendamento->used = true;
+                    $agendamento->save();
+                } else {
+                    return false;
+                }
+                return $pessoa;
+                break;
+            default:
+                die('Evento Inválido');
+                break;
+        }
+    }
+
     private function getAgendamentosByData()
     {
         $agendamentos = Agendamento::get();
@@ -213,6 +280,7 @@ class CredenciamentoController extends Controller
         $pessoa->telefone = $data['telefone'];
         $pessoa->whatsapp = (isset($data['whatsapp'])) ? $data['whatsapp'] : null;
         $pessoa->instagram = $data['instagram'];
+        $pessoa->hash = $data['hash'];
         $pessoa->save();
 
         return $pessoa;
@@ -230,6 +298,7 @@ class CredenciamentoController extends Controller
         $pessoa->telefone = $data['telefone'];
         $pessoa->whatsapp = (isset($data['whatsapp'])) ? $data['whatsapp'] : null;
         $pessoa->instagram = $data['instagram'];
+        $pessoa->hash = $data['hash'];
         $pessoa->save();
 
         return $pessoa;
@@ -260,6 +329,14 @@ class CredenciamentoController extends Controller
 
         $data['dia_semana'] = $diaSemana[$semana];
 
+        return view('mail', ['data' => $data]);
+
         Mail::send(new \App\Mail\newCredenciamento($data));
+    }
+
+    private function generateQrCode($evento, $hash)
+    {
+        $url = 'https://api.rubyroseeventos.com.br/'. $evento .'/'. $hash;
+        return QrCode::size(300)->generate($url);
     }
 }

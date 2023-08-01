@@ -125,6 +125,13 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            <div style='font-size: 16px;color: #e54583;margin: 15px;text-align: center;'>
+                                <p>{{ $data['qrcode'] }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td
                             style='background-color: #ffaeb5;height: 100px;color: #fff;max-width: 600px;margin: 0 auto;'>
                             <p style="padding: 8px">
