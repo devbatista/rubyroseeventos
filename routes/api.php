@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', [CredenciamentoController::class, 'index']);
+// Route::get('/', [CredenciamentoController::class, 'index']);
 Route::get('/teste',[CredenciamentoController::class, 'index']);
 
 Route::get('/cadastro_2', function() {
@@ -41,7 +41,7 @@ Route::get('/vagas-disponiveis', [CredenciamentoController::class, 'getVagasDisp
 
 Route::get('download-doc', [PdfController::class, 'getPdf']);
 
-Route::get('pdf2', function(){
+Route::get('/', function(){
     $data = [
         'nome' => 'Sal Ve',
         'email' => 'salve@gmail.com',
