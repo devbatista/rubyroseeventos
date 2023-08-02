@@ -42,7 +42,7 @@ Route::get('/vagas-disponiveis', [CredenciamentoController::class, 'getVagasDisp
 Route::get('download-doc', [PdfController::class, 'getPdf']);
 
 Route::get('/', function(){
-    dd($data);
+    dd('teste');
     $data = [
         'nome' => 'Sal Ve',
         'email' => 'salve@gmail.com',
