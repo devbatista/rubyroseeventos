@@ -27,7 +27,7 @@ Route::get('/cadastro_2', function() {
     return view('cadastro2');
 });
 
-Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
+Route::get('/credenciamento_teste', [CredenciamentoController::class, 'index']);
 Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
 Route::post('/melu/credenciamento', [CredenciamentoController::class, 'createMelu']);
 Route::get('/credenciamento/horas-inativas', [CredenciamentoController::class, 'getHorasInativas']);
