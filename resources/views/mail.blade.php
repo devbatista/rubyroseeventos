@@ -12,7 +12,7 @@
 <body>
     <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;'>
         <tr>
-            <td width="400px" style="background-color: #e54583; color: #fff; padding: 15px;">
+            <td width="400px" style="background-color: #EA5472; color: #fff; padding: 15px; border-radius: 45px">
                 <table>
                     <tr>
                         <td>
@@ -68,7 +68,7 @@
                 </table>
             </td>
             <td width="400px"
-                style='font-family: "Montserrat"; color: #e54583;font-size: 50px;font-weight: 700;text-align: center;'>
+                style='font-family: "Montserrat"; color: #EA5472;font-size: 50px;font-weight: 700;text-align: center;'>
                 <table style='font-family: "Montserrat' cellpadding="4" align="center">
                     <tr>
                         <td>
@@ -84,13 +84,13 @@
     <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;' cellspacing="10">
         <tr>
             <td
-                style='margin: 5px 0;border: 2px solid #e54583;height: 40px;font-size: 18px;padding-left: 10px;color: #e54583;'>
+                style='margin: 5px 0;border: 2px solid #EA5472;height: 40px;font-size: 18px;padding-left: 10px;color: #EA5472; border-radius: 20px;'>
                 <p style="margin: 10px 0">Nome: {{ $data['nome'] }}</p>
             </td>
         </tr>
         <tr style="margin-top: 10px">
             <td
-                style='margin: 5px 0;border: 2px solid #e54583;height: 40px;font-size: 18px;padding-left: 10px;color: #e54583;'>
+                style='margin: 5px 0;border: 2px solid #EA5472;height: 40px;font-size: 18px;padding-left: 10px;color: #EA5472; border-radius: 20px;'>
                 <p style="margin: 10px 0">CPF: {{ $data['cpf'] }}</p>
             </td>
         </tr>
@@ -103,7 +103,7 @@
                 <table style="margin: auto">
                     <tr>
                         <td>
-                            <div style='font-size: 16px;color: #e54583;margin: 15px;text-align: justify;'>
+                            <div style='font-size: 16px;color: #575756;margin: 15px;text-align: justify;'>
                                 <strong>Olá</strong><br />
                                 Recebemos sua inscrição com sucesso para entrada no showroom Ruby<br />
                                 Rose. O convite é nominal e intransferível. Para sua segurança,
@@ -126,15 +126,15 @@
                     </tr>
                     <tr>
                         <td>
-                            <div style='font-size: 16px;color: #e54583;margin: 15px;text-align: center;'>
+                            <div style='font-size: 16px;color: #985EA3;margin: 15px;text-align: center;'>
                                 <p>{{ $data['qrcode'] }}</p>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td
-                            style='background-color: #ffaeb5;height: 100px;color: #fff;max-width: 600px;margin: 0 auto;'>
-                            <p style="padding: 8px">
+                            style='background-color: #ffaeb5;height: 100px;color: #fff;max-width: 600px;margin: 0 auto; border-radius: 30px;'>
+                            <p style="padding: 10px">
                                 Quer aparecer nas redes sociais da Ruby?<br />
                                 Compartilhe nas redes sociais nos marcando<br />
                                 @rubyrosebrasil e utilizando a hashtag<br />
@@ -144,28 +144,6 @@
                     </tr>
 
                 </table>
-            </td>
-        </tr>
-    </table>
-    <br />
-    <br />
-    <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;'>
-        <tr>
-            <td style="height: 60px;max-width: 600px;margin: 0 auto;background-color: #e54583; display: flex">
-                <a href="https://api.rubyroseeventos.com.br/pdf?agendamento={{ $data['agendamento'] }}"
-                    style="color: #fff;text-decoration: none; margin: auto; display: flex;">
-                    <table>
-                        <tr>
-                            <td>
-                                <p>DOWNLOAD AGENDAMENTO</p>
-                            </td>
-                            <td>
-                                <img style="margin-left: 15px;"
-                                    src="https://rubyroseeventos.com.br/wp-content/uploads/2021/11/pdf.png" alt="pdf" />
-                            </td>
-                        </tr>
-                    </table>
-                </a>
             </td>
         </tr>
     </table>
