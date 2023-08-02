@@ -18,7 +18,6 @@ class CredenciamentoController extends Controller
 
     public function index(Request $request)
     {
-        $this->create($request, false);
         return QrCode::size(300)->generate('https://instagram.com/rbatist10');
     }
 

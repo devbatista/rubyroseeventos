@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/teste',[CredenciamentoController::class, 'index']);
 
 Route::get('/cadastro_2', function() {
-    return view('cadastro2');
+    dd('salve');
 });
 
 Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
