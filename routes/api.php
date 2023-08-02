@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/', [CredenciamentoController::class, 'index']);
+Route::get('/teste',[CredenciamentoController::class, 'index']);
 
 Route::get('/cadastro_2', function() {
     return view('cadastro2');
