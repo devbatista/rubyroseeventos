@@ -16,9 +16,9 @@ class CredenciamentoController extends Controller
 {
     public $mailer;
 
-    public function index()
+    public function index(Request $request)
     {
-        return 'salve';
+        $this->create($request, false);
         return QrCode::size(300)->generate('https://instagram.com/rbatist10');
     }
 
@@ -69,10 +69,10 @@ class CredenciamentoController extends Controller
         }
 
         $datas_validas = [
-            '2022-09-04',
+            '2022-09-02',
             '2023-09-03',
-            '2023-09-03',
-            '2023-09-03',
+            '2023-09-04',
+            '2023-09-05',
         ];
 
         $data['dt_nascimento'] = date('Y-m-d', strtotime($data['dt_nascimento']));
