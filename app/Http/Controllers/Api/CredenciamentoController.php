@@ -85,6 +85,8 @@ class CredenciamentoController extends Controller
 
         $data['hash'] = md5(time());
 
+        dd($data);
+
         if (!$melu) {
             $pessoa = $this->addPessoa($data, new Pessoa);
             $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
