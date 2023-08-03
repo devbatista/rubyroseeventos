@@ -10,7 +10,16 @@ use App\Models\Pessoa;
 use App\Models\AgendamentoMelu;
 use App\Models\PessoaMelu;
 use Illuminate\Support\Facades\Mail;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+// use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Endroid\QrCode\Color\Color;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Label\Label;
+use Endroid\QrCode\Logo\Logo;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Writer\ValidationException;
 
 class CredenciamentoController extends Controller
 {
@@ -342,6 +351,6 @@ class CredenciamentoController extends Controller
     private function generateQrCode($hash, $evento)
     {
         $url = 'https://api.rubyroseeventos.com.br/'. $evento .'/'. $hash;
-        return QrCode::size(300)->generate($url);
+        return QrCode::size(300)->generate('https://api.rubyroseeventos.com.br/ruby-rose/ahsudashdasasd');
     }
 }
