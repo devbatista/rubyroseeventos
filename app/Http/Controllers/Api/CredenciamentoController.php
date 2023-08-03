@@ -10,7 +10,8 @@ use App\Models\Pessoa;
 use App\Models\AgendamentoMelu;
 use App\Models\PessoaMelu;
 use Illuminate\Support\Facades\Mail;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+// use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use chillerlan\QRCode\QRCode;
 use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
@@ -27,7 +28,9 @@ class CredenciamentoController extends Controller
 
     public function index(Request $request)
     {
-        return $this->generateQrCode('ruby-rose', 'hasuhasuhsauhsa');
+        $data = 'https://instagram.com/';
+        return '<img src="'.(new QRCode)->render($data).'">';
+        // return $this->generateQrCode('ruby-rose', 'hasuhasuhsauhsa');
     }
 
     public function create_melu(Request $request)
@@ -113,10 +116,10 @@ class CredenciamentoController extends Controller
 
         $data['agendamento'] = $agendamento ? $agendamento : $agendamento_melu;
 
-        $evento = $melu ? 'melu' : 'rr';
+        $evento = $melu ? 'melu' : 'ruby-rose';
         $id = $data['agendamento'];
         $url = "https://api.rubyroseeventos.com.br/$evento/$id";
-        $data['qrcode'] = QrCode::size(300)->generate("https://api.rubyroseeventos.com.br/rr/1");
+        $data['qrcode'] = $this->generateQrCode($data['hash'], $evento);
 
         $this->enviaEmail($data);
 
@@ -348,6 +351,7 @@ class CredenciamentoController extends Controller
     private function generateQrCode($hash, $evento)
     {
         $url = 'https://api.rubyroseeventos.com.br/'. $evento .'/'. $hash;
-        return QrCode::size(300)->generate("https://rubyroseeventos.com.br");
+        return '<img src="'.(new QRCode)->render($url).'">';
+        // return QrCode::size(300)->generate("https://rubyroseeventos.com.br");
     }
 }
