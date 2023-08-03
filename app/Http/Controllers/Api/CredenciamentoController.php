@@ -18,7 +18,7 @@ class CredenciamentoController extends Controller
 
     public function index(Request $request)
     {
-        return QrCode::size(300)->generate('https://instagram.com/rbatist10');
+        return $this->generateQrCode('ruby-rose', 'hasuhasuhsauhsa');
     }
 
     public function create_melu(Request $request)
@@ -104,13 +104,11 @@ class CredenciamentoController extends Controller
 
         $data['agendamento'] = $agendamento ? $agendamento : $agendamento_melu;
 
-        print_r($data);
-        return false;
-
         $evento = $melu ? 'melu' : 'ruby-rose';
         $data['qrcode'] = $this->generateQrCode($data['hash'], $evento);
 
-        
+        print_r($data);
+        return false;
 
         $this->enviaEmail($data);
 
