@@ -10,17 +10,8 @@ use App\Models\Pessoa;
 use App\Models\AgendamentoMelu;
 use App\Models\PessoaMelu;
 use Illuminate\Support\Facades\Mail;
-// use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use chillerlan\QRCode\QRCode;
-use Endroid\QrCode\Color\Color;
-use Endroid\QrCode\Encoding\Encoding;
-use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
-// use Endroid\QrCode\QrCode;
-use Endroid\QrCode\Label\Label;
-use Endroid\QrCode\Logo\Logo;
-use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
-use Endroid\QrCode\Writer\PngWriter;
-use Endroid\QrCode\Writer\ValidationException;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+// use chillerlan\QRCode\QRCode;
 
 class CredenciamentoController extends Controller
 {
@@ -28,8 +19,9 @@ class CredenciamentoController extends Controller
 
     public function index(Request $request)
     {
-        $data = 'https://instagram.com/';
-        return '<img src="'.(new QRCode)->render($data).'">';
+        die('Requisição inválida');
+        // $data = 'https://instagram.com/';
+        // return '<img src="'.(new QRCode)->render($data).'">';
         // return $this->generateQrCode('ruby-rose', 'hasuhasuhsauhsa');
     }
 
@@ -245,7 +237,8 @@ class CredenciamentoController extends Controller
                 return $pessoa;
                 break;
             case 'ruby-rose':
-                $pessoa = Pessoa::where(['hash' => $hash])->first();
+                // $pessoa = Pessoa::where(['hash' => $hash])->first();
+                $pessoa = Pessoa::where(['cpf' => '452.511.148-85'])->first();
                 $agendamento = Agendamento::where(['pessoa' => $pessoa->id])->first();
                 if (!$agendamento->used) {
                     $agendamento->used = true;
@@ -350,8 +343,8 @@ class CredenciamentoController extends Controller
 
     private function generateQrCode($hash, $evento)
     {
-        $url = 'https://api.rubyroseeventos.com.br/'. $evento .'/'. $hash;
-        return '<img src="'.(new QRCode)->render($url).'">';
-        // return QrCode::size(300)->generate("https://rubyroseeventos.com.br");
+        // $url = 'https://api.rubyroseeventos.com.br/'. $evento .'/'. $hash;
+        // return '<img src="'.(new QRCode)->render($url).'">';
+        return QrCode::size(300)->generate("https://api.rubyroseeventos.com.br/ruby-rose/1");
     }
 }
