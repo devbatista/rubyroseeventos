@@ -128,7 +128,7 @@
                         <td>
                             <div style='font-size: 16px;color: #985EA3;margin: 15px;text-align: center;'>
                                 <p>
-                                    <img src="qrcodes/{{ $data['hash'] }}.png" alt="">
+                                    <img src="qrcodes/{{ $data['hash'] }}.png" alt="Qrcode">
                                 </p>
                             </div>
                         </td>
