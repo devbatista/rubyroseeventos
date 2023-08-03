@@ -113,9 +113,6 @@ class CredenciamentoController extends Controller
         $url = "https://api.rubyroseeventos.com.br/$evento/$id";
         $data['qrcode'] = $this->generateQrCode($data['hash'], $evento);
 
-        print_r($data);
-        return false;
-
         $this->enviaEmail($data);
 
         $retorno['list'] = $data;
