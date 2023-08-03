@@ -128,7 +128,8 @@
                         <td>
                             <div style='font-size: 16px;color: #985EA3;margin: 15px;text-align: center;'>
                                 <p>
-                                    <img src="https://rubyroseeventos.devbatista.com/qrcodes/{{ $data['hash'] }}.png" alt="Qrcode">
+                                    {{-- <img src="https://rubyroseeventos.devbatista.com/qrcodes/{{ $data['hash'] }}.png" alt="Qrcode"> --}}
+                                    <img src="https://api.rubyroseeventos.com.br/qrcodes/{{ $data['hash'] }}.png" alt="Qrcode">
                                 </p>
                             </div>
                         </td>
