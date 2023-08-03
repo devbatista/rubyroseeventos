@@ -84,6 +84,8 @@ class CredenciamentoController extends Controller
         }
 
         $data['hash'] = md5(time());
+        $agendamento = false;
+        $agendamento_melu = false;
 
         if (!$melu) {
             $pessoa = $this->addPessoa($data, new Pessoa);
@@ -100,7 +102,7 @@ class CredenciamentoController extends Controller
             return $retorno;
         }
 
-        $data['agendamento'] = is_array($agendamento) ? $agendamento : $agendamento_melu;
+        $data['agendamento'] = $agendamento ? $agendamento : $agendamento_melu;
 
         print_r($agendamento);
         return false;
