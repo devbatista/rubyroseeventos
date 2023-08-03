@@ -43,7 +43,7 @@
 
 <body>
     <div class="table-container">
-        <table cellspacing="10">
+        <table cellspacing="10" style="width: 100%">
             <tr>
                 <td class="msg">
                     <p style="margin: 10px 5px">{{ $data['error'] }}</p>
