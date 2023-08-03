@@ -114,7 +114,7 @@ class CredenciamentoController extends Controller
         $evento = $melu ? 'melu' : 'ruby-rose';
         $id = $data['agendamento'];
         $url = "https://api.rubyroseeventos.com.br/$evento/$id";
-        $data['qrcode'] = $this->generateQrCode($data['hash'], $evento);
+        $this->generateQrCode($data['hash'], $evento);
 
         $this->enviaEmail($data);
 

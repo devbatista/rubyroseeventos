@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/teste',[CredenciamentoController::class, 'index']);
 
 Route::get('/cadastro_2', function() {
-    dd('salve');
+    return '<img src="'.asset('qrcodes/2.png').'"/>';
 });
 
 Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
@@ -45,7 +45,7 @@ Route::get('/vagas-disponiveis', [CredenciamentoController::class, 'getVagasDisp
 Route::get('download-doc', [PdfController::class, 'getPdf']);
 
 Route::get('/', function(){
-    return phpinfo();
+    // return phpinfo();
     $data = [
         'nome' => 'Sal Ve',
         'email' => 'salve@gmail.com',
@@ -56,7 +56,7 @@ Route::get('/', function(){
     ];
 
     $url = 'https://api.rubyroseeventos.com.br/ruby-rose/'. $data['hash'];
-    $data['qrcode'] = QrCode::size(300)->generate($url);
+    // $data['qrcode'] = QrCode::size(300)->generate($url);
 
     $data['dia_semana'] = 'sabado';
     return view('mail', ['data' => $data]);
