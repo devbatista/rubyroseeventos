@@ -18,8 +18,6 @@ class CredenciamentoController extends Controller
 
     public function index(Request $request)
     {
-        print_r($this->generateQrCode('haushuashuashsa', 'ruby-rose'));
-        return false; 
         return $this->generateQrCode('ruby-rose', 'hasuhasuhsauhsa');
     }
 
@@ -105,6 +103,9 @@ class CredenciamentoController extends Controller
         }
 
         $data['agendamento'] = $agendamento ? $agendamento : $agendamento_melu;
+
+        print_r(QrCode::size(300)->generate('https://devbatista.com'));
+        return false;
 
         $evento = $melu ? 'melu' : 'ruby-rose';
         $data['qrcode'] = $this->generateQrCode($data['hash'], $evento);
