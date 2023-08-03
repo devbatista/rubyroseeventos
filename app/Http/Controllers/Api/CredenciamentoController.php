@@ -68,7 +68,7 @@ class CredenciamentoController extends Controller
         }
 
         $datas_validas = [
-            '2022-09-02',
+            '2023-09-02',
             '2023-09-03',
             '2023-09-04',
             '2023-09-05',
@@ -116,10 +116,10 @@ class CredenciamentoController extends Controller
     {
         $agendamentos = $agendamentos->getHorasInativas();
         $datas = [
-            '03-09-2022' => [],
-            '04-09-2022' => [],
-            '05-09-2022' => [],
-            '06-09-2022' => []
+            '03-09-2023' => [],
+            '04-09-2023' => [],
+            '05-09-2023' => [],
+            '06-09-2023' => []
         ];
 
         foreach ($datas as $data => $array) {
@@ -249,10 +249,10 @@ class CredenciamentoController extends Controller
     {
         $agendamentos = Agendamento::get();
         $datas = [
-            '03-09-2022' => [],
-            '04-09-2022' => [],
-            '05-09-2022' => [],
-            '06-09-2022' => []
+            '03-09-2023' => [],
+            '04-09-2023' => [],
+            '05-09-2023' => [],
+            '06-09-2023' => []
         ];
 
         foreach ($datas as $data => $array) {
