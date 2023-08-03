@@ -95,3 +95,11 @@ Route::get('pdf2', function(){
     $pdf = PDF::loadView('pdf', ['agendamento' => $agendamento]);
     return $pdf->setPaper('a4')->download('agendamento.pdf');
 });
+
+Route::get('read_qrcode', function(){
+    $data = ['error' => null, 'list' => [
+        'msg' => 'Seja bem vindo ao evento da Melu, Rafael Batista'
+    ]];
+
+    return view('qrcode', ['data' => $data]);
+});

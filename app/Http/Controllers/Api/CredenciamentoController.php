@@ -196,32 +196,36 @@ class CredenciamentoController extends Controller
         $qrcode = $this->validateQrCode($hash, 'ruby-rose');
 
         if (!$qrcode) {
-            $retorno['error'] = 'Cadastro já presente no evento da Ruby Rose';
-            return $retorno;
+            $data['error'] = true;
+            $data['list'] = [
+                'msg' => 'Cadastro já presente no evento da Ruby Rose'
+            ];
+        } else {
+            $data['list'] = [
+                'msg' => 'Seja bem vindo ao evento da Ruby Rose '. $qrcode->nome
+            ];
         }
 
-        $retorno['list'] = [
-            'msg' => 'Seja bem vindo ao evento da Ruby Rose, '.$qrcode->nome
-        ];
-
-        return $retorno;
+        return view('qrcode', ['data' => $data]);
     }
 
     public function validateMeluQrCode($hash) 
     {
-        $retorno = ['error' => null, 'list' => []];
+        $data = ['error' => null, 'list' => []];
         $qrcode = $this->validateQrCode($hash, 'melu');
 
         if (!$qrcode) {
-            $retorno['error'] = 'Cadastro já presente no evento da Melu';
-            return $retorno;
+            $data['error'] = true;
+            $data['list'] = [
+                'msg' => 'Cadastro já presente no evento da Melu'
+            ];
+        } else {
+            $data['list'] = [
+                'msg' => 'Seja bem vindo ao evento da Melu '. $qrcode->nome
+            ];
         }
 
-        $retorno['list'] = [
-            'msg' => 'Seja bem vindo ao evento da Melu '. $qrcode->nome
-        ];
-
-        return $retorno;
+        return view('qrcode', ['data' => $data]);
     }
 
     private function validateQrCode($hash, $evento)
@@ -346,8 +350,6 @@ class CredenciamentoController extends Controller
     private function generateQrCode($hash, $evento)
     {
         $url = 'https://rubyroseeventos.devbatista.com/'. $evento .'/'. $hash;
-        // return '<img src="'.(new QRCode)->render($url).'">';
-        // return QrCode::size(300)->generate("https://api.rubyroseeventos.com.br/ruby-rose/1");
         $options = new QROptions([
             'version' => 5,
             'eccLevel' => QRCode::ECC_L,

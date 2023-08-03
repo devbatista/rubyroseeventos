@@ -1,26 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
-    <meta charset="utf-8">
-    <title>How to Generate QR Code in Laravel 8</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RubyRose</title>
+    <style>
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('https://fonts.googleapis.com/css?family=Montserrat');
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: "Montserrat";
+        }
+
+        .table-container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .msg {
+            margin: 5px 0;
+            height: 40px;
+            font-size: 18px;
+            padding-left: 10px;
+            background-color: #e54583;
+            border-radius: 40px;
+            color: #fff;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
-
-    <div class="container mt-4">
-
-        <div class="card">
-            <div class="card-header">
-                <h2>Simple QR Code</h2>
-            </div>
-            <div class="card-body">
-                {!! QrCode::size(300)->generate('https://instagram.com/rbatist10') !!}
-            </div>
-        </div>
-
+    <div class="table-container">
+        <table cellspacing="10">
+            <tr>
+                <td class="msg">
+                    <p style="margin: 10px 0">{{ $data['list']['msg'] }}</p>
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
+
 </html>
