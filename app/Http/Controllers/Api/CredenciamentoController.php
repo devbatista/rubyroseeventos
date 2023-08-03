@@ -104,11 +104,13 @@ class CredenciamentoController extends Controller
 
         $data['agendamento'] = $agendamento ? $agendamento : $agendamento_melu;
 
+        print_r($data);
+        return false;
+
         $evento = $melu ? 'melu' : 'ruby-rose';
         $data['qrcode'] = $this->generateQrCode($data['hash'], $evento);
 
-        print_r($data);
-        return false;
+        
 
         $this->enviaEmail($data);
 
