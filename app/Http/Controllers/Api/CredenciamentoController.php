@@ -9,9 +9,12 @@ use App\Models\Agendamento;
 use App\Models\Pessoa;
 use App\Models\AgendamentoMelu;
 use App\Models\PessoaMelu;
+use BaconQrCode\Encoder\QrCode as EncoderQrCode;
 use Illuminate\Support\Facades\Mail;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
-// use chillerlan\QRCode\QRCode;
+// use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
+use SimpleSoftwareIO\QrCode\Facades\QrCode as FacadesQrCode;
 
 class CredenciamentoController extends Controller
 {
@@ -343,8 +346,16 @@ class CredenciamentoController extends Controller
 
     private function generateQrCode($hash, $evento)
     {
-        // $url = 'https://api.rubyroseeventos.com.br/'. $evento .'/'. $hash;
+        $url = 'https://api.rubyroseeventos.com.br/'. $evento .'/'. $hash;
         // return '<img src="'.(new QRCode)->render($url).'">';
-        return QrCode::size(300)->generate("https://api.rubyroseeventos.com.br/ruby-rose/1");
+        // return QrCode::size(300)->generate("https://api.rubyroseeventos.com.br/ruby-rose/1");
+        $options = new QROptions([
+            'version' => 5,
+            'eccLevel' => QRCode::ECC_L,
+            'outputType' => QRCode::OUTPUT_IMAGE_PNG,
+            'imageBase64' => false
+        ]);
+
+        file_put_contents("qrcodes/$hash.png", (new QRCode($options))->render($url));
     }
 }

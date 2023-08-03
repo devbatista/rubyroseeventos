@@ -126,6 +126,10 @@
                                 <span
                                     style='font-family: Helvetica; font-size: 16px;text-align: center;display: block;margin-top: 10px; font-weight: bold'>Aproveite
                                     a experiência Ruby Rose.</span>
+
+                                <br />
+                                <br />
+                                <p style="text-align: center"> {{ $agendamento->qrcode }} </p>
                             </div>
                         </td>
                     </tr>

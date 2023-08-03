@@ -4,8 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CredenciamentoController;
 use App\Http\Controllers\PdfController;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+// use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\Agendamento;
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +62,21 @@ Route::get('/', function(){
     return view('mail', ['data' => $data]);
 });
 
+Route::get('/qrcode_test', function(){
+    $url = 'https://api.rubyroseeventos.com.br/';
+    $rand = rand(0,10);
+    // return '<img src="'.(new QRCode)->render($url).'">';
+    // return QrCode::size(300)->generate("https://api.rubyroseeventos.com.br/ruby-rose/1");
+    $options = new QROptions([
+        'version' => 5,
+        'eccLevel' => QRCode::ECC_L,
+        'outputType' => QRCode::OUTPUT_IMAGE_PNG,
+        'imageBase64' => false
+    ]);
+
+    file_put_contents("qrcodes/$rand.png", (new QRCode($options))->render($url));
+});
+
 Route::get('pdf', [PdfController::class, 'getPdf']);
 
 Route::get('pdf2', function(){
@@ -68,8 +85,11 @@ Route::get('pdf2', function(){
     $agendamento->hora = date('H:i', strtotime($agendamento->data_hora));
     $diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
     $semana = date('w', strtotime($agendamento->data_hora));
+    $agendamento->qrcode = QrCode::size(300)->generate("https://api.rubyroseeventos.com/ruby-rose/1");
 
     $agendamento->dia_semana = $diaSemana[$semana];
+
+    return view('pdf', ['agendamento' => $agendamento]);
 
     $pdf = PDF::loadView('pdf', ['agendamento' => $agendamento]);
     return $pdf->setPaper('a4')->download('agendamento.pdf');
