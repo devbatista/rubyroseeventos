@@ -18,6 +18,8 @@ class CredenciamentoController extends Controller
 
     public function index(Request $request)
     {
+        print_r($this->generateQrCode('haushuashuashsa', 'ruby-rose'));
+        return false; 
         return $this->generateQrCode('ruby-rose', 'hasuhasuhsauhsa');
     }
 
