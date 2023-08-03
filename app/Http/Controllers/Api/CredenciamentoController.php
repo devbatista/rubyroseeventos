@@ -243,6 +243,7 @@ class CredenciamentoController extends Controller
                 $pessoa = Pessoa::where(['hash' => $hash])->first();
                 // $pessoa = Pessoa::where(['cpf' => '452.511.148-85'])->first();
                 $agendamento = Agendamento::where(['pessoa' => $pessoa->id])->first();
+                print_r($agendamento);return false;
                 if (!$agendamento->used) {
                     $agendamento->used = true;
                     $agendamento->save();
