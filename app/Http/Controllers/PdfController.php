@@ -13,7 +13,6 @@ class PdfController extends Controller
     {
         $data = $request->only('agendamento');
         $agendamento = $agendamento->getAgendamento($data['agendamento']);
-        print_r($agendamento);return false;
         $pessoa = Pessoa::find($agendamento->pessoa)->first();
 
         $agendamento->data = date('d/m/Y', strtotime($agendamento->data_hora));
