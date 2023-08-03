@@ -116,10 +116,10 @@ class CredenciamentoController extends Controller
     {
         $agendamentos = $agendamentos->getHorasInativas();
         $datas = [
+            '02-09-2023' => [],
             '03-09-2023' => [],
             '04-09-2023' => [],
-            '05-09-2023' => [],
-            '06-09-2023' => []
+            '05-09-2023' => []
         ];
 
         foreach ($datas as $data => $array) {
