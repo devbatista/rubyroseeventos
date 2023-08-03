@@ -201,7 +201,7 @@ class CredenciamentoController extends Controller
         }
         
         $data['list'] = [
-            'msg' => 'Seja bem vindo ao evento da Ruby Rose '. $qrcode->nome
+            'msg' => 'Seja bem vindo ao evento da Ruby Rose, '. $qrcode->nome
         ];
         return view('qrcode', ['data' => $data]);
     }
@@ -216,7 +216,7 @@ class CredenciamentoController extends Controller
             return view('qrerror', ['data' => $data]);
         } 
         $data['list'] = [
-            'msg' => 'Seja bem vindo ao evento da Melu '. $qrcode->nome
+            'msg' => 'Seja bem vindo ao evento da Melu, '. $qrcode->nome
         ];
         return view('qrcode', ['data' => $data]);
     }
