@@ -85,9 +85,6 @@ class CredenciamentoController extends Controller
 
         $data['hash'] = md5(time());
 
-        print_r($data);
-        return false;
-
         if (!$melu) {
             $pessoa = $this->addPessoa($data, new Pessoa);
             $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
@@ -104,6 +101,9 @@ class CredenciamentoController extends Controller
         }
 
         $data['agendamento'] = is_array($agendamento) ? $agendamento : $agendamento_melu;
+
+        print_r($agendamento);
+        return false;
 
         $evento = $melu ? 'melu' : 'ruby-rose';
         $data['qrcode'] = $this->generateQrCode($data['hash'], $evento);
