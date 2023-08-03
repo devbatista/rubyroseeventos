@@ -104,7 +104,7 @@ class CredenciamentoController extends Controller
 
         $data['agendamento'] = $agendamento ? $agendamento : $agendamento_melu;
 
-        print_r($agendamento);
+        print_r($data);
         return false;
 
         $evento = $melu ? 'melu' : 'ruby-rose';
