@@ -130,7 +130,7 @@
                                 <br />
                                 <br />
                                 <p style="text-align: center"> 
-                                    <img src="qrcodes/{{ $agendamento['hash'] }}.png" alt="">
+                                    <img src="qrcodes/{{ $agendamento->hash }}.png" alt="">
                                 </p>
                             </div>
                         </td>
