@@ -196,16 +196,13 @@ class CredenciamentoController extends Controller
         $qrcode = $this->validateQrCode($hash, 'ruby-rose');
 
         if (!$qrcode) {
-            $data['error'] = true;
-            $data['list'] = [
-                'msg' => 'Cadastro já presente no evento da Ruby Rose'
-            ];
-        } else {
-            $data['list'] = [
-                'msg' => 'Seja bem vindo ao evento da Ruby Rose '. $qrcode->nome
-            ];
+            $data['error'] = 'Cadastro já presente no evento da Ruby Rose';
+            return view('qrerror', ['data' => $data]);
         }
-
+        
+        $data['list'] = [
+            'msg' => 'Seja bem vindo ao evento da Ruby Rose '. $qrcode->nome
+        ];
         return view('qrcode', ['data' => $data]);
     }
 
@@ -215,16 +212,12 @@ class CredenciamentoController extends Controller
         $qrcode = $this->validateQrCode($hash, 'melu');
 
         if (!$qrcode) {
-            $data['error'] = true;
-            $data['list'] = [
-                'msg' => 'Cadastro já presente no evento da Melu'
-            ];
-        } else {
-            $data['list'] = [
-                'msg' => 'Seja bem vindo ao evento da Melu '. $qrcode->nome
-            ];
-        }
-
+            $data['error'] = 'Cadastro já presente no evento da Melu';
+            return view('qrerror', ['data' => $data]);
+        } 
+        $data['list'] = [
+            'msg' => 'Seja bem vindo ao evento da Melu '. $qrcode->nome
+        ];
         return view('qrcode', ['data' => $data]);
     }
 

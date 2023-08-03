@@ -32,7 +32,7 @@
             margin: 5px 0;
             height: 40px;
             font-size: 18px;
-            background-color: #e54583;
+            background-color: #891515;
             border-radius: 40px;
             color: #fff;
             text-align: center;
@@ -46,7 +46,7 @@
         <table cellspacing="10">
             <tr>
                 <td class="msg">
-                    <p style="margin: 10px 5px">{{ $data['list']['msg'] }}</p>
+                    <p style="margin: 10px 5px">{{ $data['error'] }}</p>
                 </td>
             </tr>
         </table>
