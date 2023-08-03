@@ -240,8 +240,8 @@ class CredenciamentoController extends Controller
                 return $pessoa;
                 break;
             case 'ruby-rose':
-                // $pessoa = Pessoa::where(['hash' => $hash])->first();
-                $pessoa = Pessoa::where(['cpf' => '452.511.148-85'])->first();
+                $pessoa = Pessoa::where(['hash' => $hash])->first();
+                // $pessoa = Pessoa::where(['cpf' => '452.511.148-85'])->first();
                 $agendamento = Agendamento::where(['pessoa' => $pessoa->id])->first();
                 if (!$agendamento->used) {
                     $agendamento->used = true;
