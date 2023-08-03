@@ -195,6 +195,7 @@ class CredenciamentoController extends Controller
     {
         $retorno = ['error' => null, 'list' => []];
         $qrcode = $this->validateQrCode($hash, 'ruby-rose');
+        dd($qrcode);
 
         if (!$qrcode) {
             $retorno['error'] = 'Cadastro já presente no evento da Ruby Rose';
