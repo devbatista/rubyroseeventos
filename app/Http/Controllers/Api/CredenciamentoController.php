@@ -107,9 +107,6 @@ class CredenciamentoController extends Controller
         $evento = $melu ? 'melu' : 'ruby-rose';
         $data['qrcode'] = $this->generateQrCode($data['hash'], $evento);
 
-        print_r($data);
-        return false;
-
         $this->enviaEmail($data);
 
         $retorno['list'] = $data;
@@ -337,12 +334,9 @@ class CredenciamentoController extends Controller
         Mail::send(new \App\Mail\newCredenciamento($data));
     }
 
-    private function generateQrCode($evento, $hash)
+    private function generateQrCode($hash, $evento)
     {
         $url = 'https://api.rubyroseeventos.com.br/'. $evento .'/'. $hash;
-        print_r(QrCode::size(300)->generate($url));
-        return false;
-
         return QrCode::size(300)->generate($url);
     }
 }
