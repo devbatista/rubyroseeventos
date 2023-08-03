@@ -231,7 +231,7 @@ class CredenciamentoController extends Controller
             case 'melu':
                 $pessoa = PessoaMelu::where(['hash' => $hash])->first();
                 $agendamento = AgendamentoMelu::where(['pessoa' => $pessoa->id])->first();
-                if (!$agendamento->used) {
+                if ($agendamento->used == 0) {
                     $agendamento->used = true;
                     $agendamento->save();
                 } else {
