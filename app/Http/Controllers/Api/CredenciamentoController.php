@@ -340,6 +340,9 @@ class CredenciamentoController extends Controller
     private function generateQrCode($evento, $hash)
     {
         $url = 'https://api.rubyroseeventos.com.br/'. $evento .'/'. $hash;
+        print_r($url);
+        return false;
+        
         return QrCode::size(300)->generate($url);
     }
 }
