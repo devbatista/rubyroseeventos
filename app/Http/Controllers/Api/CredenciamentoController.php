@@ -116,7 +116,7 @@ class CredenciamentoController extends Controller
         $evento = $melu ? 'melu' : 'ruby-rose';
         $hash = $data['hash'];
         $url = "https://api.rubyroseeventos.com.br/$evento/$hash";
-        $data['qrcode'] = QrCode::size(300)->generate("https://api.rubyroseeventos.com.br/ruby-rose");
+        $data['qrcode'] = QrCode::size(300)->generate("https://api.rubyroseeventos.com.br/ruby-rose/1");
 
         print_r($data['qrcode']);
         return false;
