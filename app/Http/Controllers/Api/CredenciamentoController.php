@@ -227,6 +227,7 @@ class CredenciamentoController extends Controller
 
     private function validateQrCode($hash, $evento)
     {
+        print_r($evento);return false;
         switch ($evento) {
             case 'melu':
                 $pessoa = PessoaMelu::where(['hash' => $hash])->first();
