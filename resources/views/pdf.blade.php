@@ -109,7 +109,7 @@
                     <tr>
                         <td>
                             <div style='font-size: 14px;color: #e54583;margin: 12px;text-align: justify;'>
-                                <strong style="font-family: Helvetica">Olá</strong><br />
+                                {{-- <strong style="font-family: Helvetica">Olá</strong><br />
                                 Recebemos sua inscrição com sucesso para entrada no showroom Ruby<br />
                                 Rose. O convite é nominal e intransferível. Para sua segurança,
                                 <br />
@@ -128,7 +128,7 @@
                                     a experiência Ruby Rose.</span>
 
                                 <br />
-                                <br />
+                                <br /> --}}
                                 <p style="text-align: center"> 
                                     <img src="qrcodes/{{ $agendamento->hash }}.png" alt="">
                                 </p>
