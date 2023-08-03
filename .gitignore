@@ -16,6 +16,7 @@ yarn-error.log
 /.vscode
 .htaccess
 error.log
+error_log
 public/.htaccess
 public/.user.ini
 public/error_log
