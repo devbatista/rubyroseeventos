@@ -31,7 +31,7 @@ Route::get('/cadastro_2', function() {
 Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
 Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
 Route::post('/melu/credenciamento', [CredenciamentoController::class, 'createMelu']);
-Route::get('/credenciamento/horas-inativas', [CredenciamentoController::class, 'getHorasInativas']);
+Route::get('/horas-inativas', [CredenciamentoController::class, 'getHorasInativas']);
 Route::get('/admin/agendamentos', [CredenciamentoController::class, 'getAgendamentos']);
 
 Route::get('/ruby-rose/{hash}', [CredenciamentoController::class, 'validateRubyRoseQrCode']);
