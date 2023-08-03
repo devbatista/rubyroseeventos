@@ -65,6 +65,7 @@ Route::get('/', function(){
 Route::get('/qrcode_test', function(){
     $url = 'https://api.rubyroseeventos.com.br/';
     $rand = rand(0,10);
+    $num = 525;
     // return '<img src="'.(new QRCode)->render($url).'">';
     // return QrCode::size(300)->generate("https://api.rubyroseeventos.com.br/ruby-rose/1");
     $options = new QROptions([
@@ -74,7 +75,7 @@ Route::get('/qrcode_test', function(){
         'imageBase64' => false
     ]);
 
-    file_put_contents("qrcodes/$rand.png", (new QRCode($options))->render($url));
+    file_put_contents("qrcodes/$num.png", (new QRCode($options))->render($url));
 });
 
 Route::get('pdf', [PdfController::class, 'getPdf']);
@@ -85,7 +86,7 @@ Route::get('pdf2', function(){
     $agendamento->hora = date('H:i', strtotime($agendamento->data_hora));
     $diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
     $semana = date('w', strtotime($agendamento->data_hora));
-    $agendamento->qrcode = QrCode::size(300)->generate("https://api.rubyroseeventos.com/ruby-rose/1");
+    $agendamento->hash = 525;
 
     $agendamento->dia_semana = $diaSemana[$semana];
 
