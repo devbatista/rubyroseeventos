@@ -113,7 +113,6 @@ class CredenciamentoController extends Controller
 
         $evento = $melu ? 'melu' : 'ruby-rose';
         $id = $data['agendamento'];
-        $url = "https://api.rubyroseeventos.com.br/$evento/$id";
         $this->generateQrCode($data['hash'], $evento);
 
         $this->enviaEmail($data);
@@ -195,7 +194,6 @@ class CredenciamentoController extends Controller
     {
         $retorno = ['error' => null, 'list' => []];
         $qrcode = $this->validateQrCode($hash, 'ruby-rose');
-        dd($qrcode);
 
         if (!$qrcode) {
             $retorno['error'] = 'Cadastro já presente no evento da Ruby Rose';
@@ -245,7 +243,6 @@ class CredenciamentoController extends Controller
                 $pessoa = Pessoa::where(['hash' => $hash])->first();
                 // $pessoa = Pessoa::where(['cpf' => '452.511.148-85'])->first();
                 $agendamento = Agendamento::where(['pessoa' => $pessoa->id])->first();
-                print_r($agendamento);return false;
                 if (!$agendamento->used) {
                     $agendamento->used = true;
                     $agendamento->save();
@@ -349,7 +346,7 @@ class CredenciamentoController extends Controller
 
     private function generateQrCode($hash, $evento)
     {
-        $url = 'https://api.rubyroseeventos.com.br/'. $evento .'/'. $hash;
+        $url = 'https://rubyroseeventos.devbatista.com/'. $evento .'/'. $hash;
         // return '<img src="'.(new QRCode)->render($url).'">';
         // return QrCode::size(300)->generate("https://api.rubyroseeventos.com.br/ruby-rose/1");
         $options = new QROptions([
