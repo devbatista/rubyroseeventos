@@ -16,7 +16,7 @@
         }
 
     </style>
-    <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;'>
+    <table style='max-width: 600px; width: 100%; font-family: "Montserrat"; margin: 0 auto;'>
         <tr>
             <td width="350px" style="background-color: #e54583; color: #fff; padding: 15px;">
                 <table>
@@ -86,7 +86,7 @@
     </table>
     <br />
     <br />
-    <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;' cellspacing="10">
+    <table style='max-width: 600px; width: 100%; font-family: "Montserrat"; margin: 0 auto;' cellspacing="10">
         <tr>
             <td
                 style='margin: 5px 0;border: 2px solid #e54583;height: 40px;font-size: 18px;padding-left: 10px;color: #e54583;'>
@@ -102,7 +102,7 @@
     </table>
     <br />
     <br />
-    <table style='max-width: 800px; width: 100%; font-family: "Montserrat"; margin: 0 auto;'>
+    <table style='max-width: 600px; width: 100%; font-family: "Montserrat"; margin: 0 auto;'>
         <tr>
             <td style="text-align: center">
                 <table style="margin: auto">
