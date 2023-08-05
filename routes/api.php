@@ -31,6 +31,10 @@ Route::get('/cadastro_2', function() {
     return '<img src="'.asset('qrcodes/2.png').'"/>';
 });
 
+Route::get('/cadastro_teste', function() {
+    return view('cadastro');
+});
+
 Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
 Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
 Route::post('/melu/credenciamento', [CredenciamentoController::class, 'createMelu']);
