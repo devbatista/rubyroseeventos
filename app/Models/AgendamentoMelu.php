@@ -26,7 +26,7 @@ class AgendamentoMelu extends Model
     {
         $retorno = DB::table('agendamentos_melu as am')
             -> select('am.id', 'p.nome', 'p.cpf', 'am.data_hora', 'a.used')
-            ->join('pessoas as p', 'p.id', '=', 'am.pessoa')
+            ->join('pessoas_melu as p', 'p.id', '=', 'am.pessoa')
             ->where('am.id', '=', $id)
             ->first();
         

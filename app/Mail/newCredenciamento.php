@@ -31,8 +31,10 @@ class newCredenciamento extends Mailable
      */
     public function build()
     {
-        $this->subject('noreply - Credenciamento Ruby Rose');
-        $this->to($this->data['email'], $this->data['nome']);
+        if($this->melu) {
+            $this->subject('noreply - Credenciamento Ruby Rose');
+            $this->to($this->data['email'], $this->data['nome']);
+        }
 
         if($this->melu) {
             return $this->view('melu', ['data' => $this->data]);
