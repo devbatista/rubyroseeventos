@@ -28,7 +28,7 @@ class CredenciamentoController extends Controller
         // return $this->generateQrCode('ruby-rose', 'hasuhasuhsauhsa');
     }
 
-    public function create_melu(Request $request)
+    public function createMelu(Request $request)
     {
         $this->create($request, true);
     }
