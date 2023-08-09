@@ -53,12 +53,13 @@ class CredenciamentoController extends Controller
                 }
             }
         }
+        $table = ($melu) ? '_melu' : '';
 
         $validator = Validator::make($data, [
             'nome' => 'required|string|max:100',
             'dt_nascimento' => 'required|date_format:d-m-Y',
-            'cpf' => 'required|max:15|cpf|unique:pessoas,cpf',
-            'email' => 'required|string|max:100|email|unique:pessoas,email',
+            'cpf' => 'required|max:15|cpf|unique:pessoas'.$table.',cpf',
+            'email' => 'required|string|max:100|email|unique:pessoas'.$table.',email',
             'cidade' => 'required|string|max:100',
             'estado' => 'required|string|uf|max:2',
             'pais' => 'string|max:50|nullable',
@@ -124,7 +125,7 @@ class CredenciamentoController extends Controller
 
     public function getHorasInativasMelu()
     {
-        $this->getHorasInativas(true);
+        return $this->getHorasInativas(true);
     }
 
     public function getHorasInativas($melu = false)
