@@ -35,6 +35,10 @@ Route::get('/cadastro_teste', function() {
     return view('cadastro');
 });
 
+Route::get('/cadastro_teste_melu', function() {
+    return view('cadastro2');
+});
+
 Route::get('/credenciamento', [CredenciamentoController::class, 'index']);
 Route::post('/credenciamento', [CredenciamentoController::class, 'create']);
 Route::post('/melu/credenciamento', [CredenciamentoController::class, 'createMelu']);
@@ -84,6 +88,7 @@ Route::get('/qrcode_test', function(){
 });
 
 Route::get('pdf', [PdfController::class, 'getPdf']);
+Route::get('pdf_melu', [PdfController::class, 'getPdfMelu']);
 
 Route::get('pdf2', function(){
     $agendamento = Agendamento::first();
