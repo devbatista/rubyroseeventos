@@ -313,8 +313,6 @@ class CredenciamentoController extends Controller
         $pessoa->whatsapp = (isset($data['whatsapp'])) ? $data['whatsapp'] : null;
         $pessoa->instagram = $data['instagram'];
         $pessoa->hash = $data['hash'];
-
-        print_r($pessoa);return false;
         $pessoa->save();
 
         return $pessoa;
@@ -322,7 +320,6 @@ class CredenciamentoController extends Controller
 
     private function addAgendamento($data, $id, Agendamento $agendamento)
     {
-        dd($id);
         $agendamento->pessoa = $id;
         $agendamento->data_hora = $data['data_hora'];
         $agendamento->save();
