@@ -35,6 +35,7 @@ class CredenciamentoController extends Controller
 
     public function create(Request $request, $melu = false)
     {
+        dd($melu);
         $retorno = ['error' => null, 'list' => []];
         $data = $request->all();
 
