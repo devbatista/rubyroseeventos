@@ -30,7 +30,7 @@ class CredenciamentoController extends Controller
 
     public function createMelu(Request $request)
     {
-        $this->create($request, true);
+        return $this->create($request, true);
     }
 
     public function create(Request $request, $melu = false)
