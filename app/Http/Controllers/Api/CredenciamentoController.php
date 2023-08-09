@@ -35,7 +35,6 @@ class CredenciamentoController extends Controller
 
     public function create(Request $request, $melu = false)
     {
-        dd($melu);
         $retorno = ['error' => null, 'list' => []];
         $data = $request->all();
 
@@ -94,6 +93,8 @@ class CredenciamentoController extends Controller
         $data['hash'] = md5(time());
         $agendamento = false;
         $agendamento_melu = false;
+
+        dd($data);
 
         if (!$melu) {
             $pessoa = $this->addPessoa($data, new Pessoa);
