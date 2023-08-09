@@ -100,7 +100,6 @@ class CredenciamentoController extends Controller
             $agendamento_melu = $agendamento ? true : false;
         } else {
             $pessoa_melu = $this->addPessoaMelu($data, new PessoaMelu);
-            dd($pessoa_melu);
             $agendamento_melu = $this->addAgendamentoMelu($data, $pessoa_melu->id, new AgendamentoMelu);
             $agendamento = $agendamento_melu ? true : false;
         }
@@ -314,6 +313,8 @@ class CredenciamentoController extends Controller
         $pessoa->whatsapp = (isset($data['whatsapp'])) ? $data['whatsapp'] : null;
         $pessoa->instagram = $data['instagram'];
         $pessoa->hash = $data['hash'];
+
+        dd($pessoa);
         $pessoa->save();
 
         return $pessoa;
@@ -321,6 +322,7 @@ class CredenciamentoController extends Controller
 
     private function addAgendamento($data, $id, Agendamento $agendamento)
     {
+        dd($id);
         $agendamento->pessoa = $id;
         $agendamento->data_hora = $data['data_hora'];
         $agendamento->save();
