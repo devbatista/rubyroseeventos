@@ -314,7 +314,7 @@ class CredenciamentoController extends Controller
         $pessoa->instagram = $data['instagram'];
         $pessoa->hash = $data['hash'];
 
-        dd($pessoa);
+        print_r($pessoa);return false;
         $pessoa->save();
 
         return $pessoa;
