@@ -130,8 +130,8 @@ class CredenciamentoController extends Controller
     public function getHorasInativas($melu = false)
     {
         $agendamentos = (!$melu) ? new Agendamento() : new AgendamentoMelu();
-        dd($agendamentos);
         $agendamentos = $agendamentos->getHorasInativas();
+        dd($agendamentos);
         $datas = [
             '09-09-2023' => [],
             '10-09-2023' => [],
