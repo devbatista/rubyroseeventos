@@ -75,10 +75,10 @@ class CredenciamentoController extends Controller
         }
 
         $datas_validas = [
-            '2023-09-02',
-            '2023-09-03',
-            '2023-09-04',
-            '2023-09-05',
+            '2023-09-09',
+            '2023-09-10',
+            '2023-09-11',
+            '2023-09-12',
         ];
 
         $data['dt_nascimento'] = date('Y-m-d', strtotime($data['dt_nascimento']));
