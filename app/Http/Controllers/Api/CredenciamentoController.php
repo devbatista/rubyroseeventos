@@ -92,33 +92,34 @@ class CredenciamentoController extends Controller
         }
 
         $data['hash'] = md5(time());
-        $agendamento = false;
+        $agendamento_rr = false;
         $agendamento_melu = false;
 
         if (!$melu) {
             $pessoa = $this->addPessoa($data, new Pessoa);
-            $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
+            $agendamento_rr = $this->addAgendamento($data, $pessoa->id, new Agendamento);
             $agendamento_melu = $agendamento ? true : false;
         } else {
             $pessoa_melu = $this->addPessoaMelu($data, new PessoaMelu);
             $agendamento_melu = $this->addAgendamentoMelu($data, $pessoa_melu->id, new AgendamentoMelu);
-            $agendamento = $agendamento_melu ? true : false;
+            $agendamento_rr = $agendamento_melu ? true : false;
         }
 
-        if (!$agendamento || !$agendamento_melu) {
+        if (!$agendamento_rr || !$agendamento_melu) {
             $retorno['error'] = 'Agendamento não concluído, atualize a página e tente novamente';
             return $retorno;
         }
 
-        $data['agendamento'] = $agendamento ? $agendamento : $agendamento_melu;
+        $data['agendamento'] = ($agendamento_rr) ? $agendamento_rr : $agendamento_melu;
 
         $evento = $melu ? 'melu' : 'ruby-rose';
         $id = $data['agendamento'];
         $this->generateQrCode($data['hash'], $evento);
 
-        $this->enviaEmail($data, $melu);
+        // $this->enviaEmail($data, $melu);
 
         $retorno['list'] = $data;
+        dd($retorno['list']);
 
         return $retorno;
     }
@@ -315,6 +316,8 @@ class CredenciamentoController extends Controller
         $pessoa->instagram = $data['instagram'];
         $pessoa->hash = $data['hash'];
         $pessoa->save();
+
+        dd($pessoa);
 
         return $pessoa;
     }

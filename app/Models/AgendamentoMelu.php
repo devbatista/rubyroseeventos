@@ -25,7 +25,7 @@ class AgendamentoMelu extends Model
     public function getAgendamento($id)
     {
         $retorno = DB::table('agendamentos_melu as am')
-            -> select('am.id', 'am.pessoa', 'p.nome', 'p.cpf', 'am.data_hora', 'am.used')
+            ->select('am.id', 'am.pessoa', 'p.nome', 'p.cpf', 'am.data_hora', 'am.used')
             ->join('pessoas_melu as p', 'p.id', '=', 'am.pessoa')
             ->where('am.id', '=', $id)
             ->first();
