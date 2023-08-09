@@ -94,8 +94,6 @@ class CredenciamentoController extends Controller
         $agendamento = false;
         $agendamento_melu = false;
 
-        dd($data);
-
         if (!$melu) {
             $pessoa = $this->addPessoa($data, new Pessoa);
             $agendamento = $this->addAgendamento($data, $pessoa->id, new Agendamento);
