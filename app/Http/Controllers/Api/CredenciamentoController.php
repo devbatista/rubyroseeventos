@@ -38,7 +38,7 @@ class CredenciamentoController extends Controller
         $retorno = ['error' => null, 'list' => []];
         $data = $request->all();
 
-        $horarios = $this->getHorasInativas(new Agendamento());
+        $horarios = $this->getHorasInativas($melu);
         $data_hora = explode(' ', $data['data_hora']);
 
         foreach ($horarios as $dia => $horario) {
@@ -122,8 +122,14 @@ class CredenciamentoController extends Controller
         return $retorno;
     }
 
-    public function getHorasInativas(Agendamento $agendamentos)
+    public function getHorasInativasMelu()
     {
+        $this->getHorasInativas(true);
+    }
+
+    public function getHorasInativas($melu = false)
+    {
+        $agendamentos = (!$melu) ? new Agendamento() : new AgendamentoMelu();
         $agendamentos = $agendamentos->getHorasInativas();
         $datas = [
             '09-09-2023' => [],
