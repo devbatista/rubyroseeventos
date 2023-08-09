@@ -116,7 +116,7 @@ class CredenciamentoController extends Controller
         $id = $data['agendamento'];
         $this->generateQrCode($data['hash'], $evento);
 
-        $this->enviaEmail($data);
+        $this->enviaEmail($data, $melu);
 
         $retorno['list'] = $data;
 
@@ -337,7 +337,7 @@ class CredenciamentoController extends Controller
         return $agendamento->id;
     }
 
-    private function enviaEmail($data)
+    private function enviaEmail($data, $melu)
     {
         $diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
         $semana = date('w', strtotime($data['data_hora']));

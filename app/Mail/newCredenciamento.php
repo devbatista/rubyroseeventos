@@ -11,15 +11,17 @@ class newCredenciamento extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
+    public $melu;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data, $melu = false)
     {
         $this->data = $data;
+        $this->melu = $melu;
     }
 
     /**
@@ -31,6 +33,11 @@ class newCredenciamento extends Mailable
     {
         $this->subject('noreply - Credenciamento Ruby Rose');
         $this->to($this->data['email'], $this->data['nome']);
-        return $this->view('mail', ['data' => $this->data]);
+
+        if($this->melu) {
+            return $this->view('melu', ['data' => $this->data]);
+        } else {
+            return $this->view('mail', ['data' => $this->data]);
+        }
     }
 }
