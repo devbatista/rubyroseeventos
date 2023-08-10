@@ -31,7 +31,7 @@ class newCredenciamento extends Mailable
      */
     public function build()
     {
-        if ($this->melu) {
+        if (!$this->melu) {
             $this->subject('noreply - Credenciamento Ruby Rose');
         } else {
             $this->subject('noreply - Credenciamento Melu - by Ruby Rose');
