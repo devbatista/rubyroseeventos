@@ -344,7 +344,7 @@ class CredenciamentoController extends Controller
 
         $data['dia_semana'] = $diaSemana[$semana];
 
-        Mail::send(new \App\Mail\newCredenciamento($data));
+        Mail::send(new \App\Mail\newCredenciamento($data, $melu));
     }
 
     private function generateQrCode($hash, $evento)
