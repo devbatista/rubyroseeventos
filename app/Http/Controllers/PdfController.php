@@ -46,7 +46,7 @@ class PdfController extends Controller
         $agendamento->dia_semana = $diaSemana[$semana];
         $agendamento->hash = $pessoa->hash;
 
-        $pdf = PDF::loadView('pdf', ['agendamento' => $agendamento]);
+        $pdf = PDF::loadView('pdf_melu', ['agendamento' => $agendamento]);
 
         return $pdf->setPaper('a4')->download('agendamento.pdf');
     }

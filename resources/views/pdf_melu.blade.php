@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RubyRose</title>
+    <title>Melu</title>
 </head>
 
 <body>
@@ -77,7 +77,7 @@
                 <table style='font-family: "Montserrat' cellpadding="4" align="center">
                     <tr>
                         <td style="font-family: Helvetica">
-                            RubyRose
+                            Melu
                         </td>
                     </tr>
                 </table>
@@ -110,7 +110,7 @@
                         <td>
                             <div style='text-align: center;'>
                                 <img 
-                                    src="https://rubyroseeventos.com.br/wp-content/uploads/2023/08/AtencaoQRRR.png" 
+                                    src="https://rubyroseeventos.com.br/wp-content/uploads/2023/08/AtencaoQRMelu.png" 
                                     alt="atencao"
                                     style="width: 500px"
                                 >
