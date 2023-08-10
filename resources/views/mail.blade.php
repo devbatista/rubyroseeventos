@@ -148,9 +148,9 @@
                         <td
                             style='background-color: #985EA3;height: 100px;color: #fff;max-width: 600px;margin: 0 auto; border-radius: 30px;'>
                             <p style="padding: 10px">
-                                Quer aparecer nas redes sociais da Ruby?<br />
-                                Compartilhe nas redes sociais nos marcando<br />
-                                @rubyrosebrasil e utilizando a hashtag<br />
+                                Quer aparecer nas redes sociais da Ruby? <br>
+                                Compartilhe nos marcando <br>
+                                @rubyrosebrasil e utilizando a hashtag <br>
                                 #rubyrosebeautyfair
                             </p>
                         </td>
