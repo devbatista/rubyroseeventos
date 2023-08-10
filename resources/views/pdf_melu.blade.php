@@ -121,10 +121,10 @@
                         <td style='background-color: #ffaeb5;height: 100px;color: #fff;max-width: 600px;margin: 0 auto;'
                             align="center">
                             <p style="padding: 8px">
-                                Quer aparecer nas redes sociais da Ruby?<br />
-                                Compartilhe nas redes sociais nos marcando<br />
-                                @rubyrosebrasil e utilizando a hashtag<br />
-                                #rubyrosebeautyfair
+                                Quer aparecer nas redes sociais da Melu?<br>
+                                Compartilhe nos marcando <br>
+                                @melu.brasil e utilizando a hashtag <br>
+                                #melubeautyfair
                             </p>
                         </td>
                     </tr>
