@@ -116,7 +116,7 @@ class CredenciamentoController extends Controller
         $id = $data['agendamento'];
         $this->generateQrCode($data['hash'], $evento);
 
-        // $this->enviaEmail($data, $melu);
+        $this->enviaEmail($data, $melu);
 
         $retorno['list'] = $data;
 
