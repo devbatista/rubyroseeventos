@@ -98,9 +98,11 @@ class CredenciamentoController extends Controller
         if (!$melu) {
             $pessoa = $this->addPessoa($data, new Pessoa);
             $agendamento_rr = $this->addAgendamento($data, $pessoa->id, new Agendamento);
+            $agendamento_melu = $agendamento_rr ? true : false;
         } else {
             $pessoa_melu = $this->addPessoaMelu($data, new PessoaMelu);
             $agendamento_melu = $this->addAgendamentoMelu($data, $pessoa_melu->id, new AgendamentoMelu);
+            $agendamento_rr = $agendamento_melu ? true : false;
         }
 
         if (!$agendamento_rr || !$agendamento_melu) {
@@ -108,7 +110,7 @@ class CredenciamentoController extends Controller
             return $retorno;
         }
 
-        $data['agendamento'] = ($agendamento_rr) ? $agendamento_rr : $agendamento_melu;
+        $data['agendamento'] = (!is_bool($agendamento_rr)) ? $agendamento_rr : $agendamento_melu;
 
         $evento = $melu ? 'melu' : 'ruby-rose';
         $id = $data['agendamento'];
