@@ -23,7 +23,7 @@
                     <tr>
                         <td>
                             <div>
-                                CREDENCIAMENTO STAND RUBY ROSE<br />
+                                CREDENCIAMENTO STAND MELU BY RUBY ROSE<br />
                                 BEAUTY FAIR {{ date('Y') }}
                             </div>
                         </td>
@@ -37,11 +37,6 @@
                                             <table cellspacing="5">
                                                 <tr>
                                                     <td>
-                                                        <img style="height: 24px;margin-right: 10px;"
-                                                            src="https://rubyroseeventos.com.br/wp-content/uploads/2021/11/hora.png"
-                                                            alt="data" />
-                                                    </td>
-                                                    <td>
                                                         {{ $agendamento->data . ' - ' . $agendamento->dia_semana }}
                                                     </td>
                                                 </tr>
@@ -54,11 +49,6 @@
                                         <div style='margin-top: 10px;height: 24px;display: flex;align-items: center;'>
                                             <table cellspacing='5'>
                                                 <tr>
-                                                    <td>
-                                                        <img style="height: 24px;margin-right: 10px;"
-                                                            src="https://rubyroseeventos.com.br/wp-content/uploads/2021/11/data.png"
-                                                            alt="hora" />
-                                                    </td>
                                                     <td>
                                                         {{ $agendamento->hora }}
                                                     </td>
@@ -109,37 +99,18 @@
                     <tr>
                         <td>
                             <div style='text-align: center;'>
-                                <img 
+                                {{-- <img 
                                     src="https://rubyroseeventos.com.br/wp-content/uploads/2023/08/AtencaoQRMelu.png" 
                                     alt="atencao"
                                     style="width: 500px"
-                                >
+                                > --}}
+                                <p style="color: #e64583;font-size: 24px;">ATENÇÃO, NÃO FAÇA A LEITURA DO QRCODE</p>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div style='font-size: 14px;color: #e54583;margin: 12px;text-align: justify;'>
-                                {{-- <strong style="font-family: Helvetica">Olá</strong><br />
-                                Recebemos sua inscrição com sucesso para entrada no showroom Ruby<br />
-                                Rose. O convite é nominal e intransferível. Para sua segurança,
-                                <br />
-                                informamos que poderá ser solicitada a apresentação de documento com
-                                <br />
-                                foto no momento do acesso junto ao e-mail de conﬁrmação de
-                                inscrição. <br />
-                                O ingresso é válido somente para o dia e horário escolhido no ato da
-                                <br />
-                                inscrição, sem tolerância de atraso.<br />
-                                É obrigatória utilização de máscaras de proteção em todo espaço e o
-                                <br />
-                                distanciamento social de 1m. <br />
-                                <span
-                                    style='font-family: Helvetica; font-size: 16px;text-align: center;display: block;margin-top: 10px; font-weight: bold'>Aproveite
-                                    a experiência Ruby Rose.</span>
-
-                                <br />
-                                <br /> --}}
                                 <p style="text-align: center"> 
                                     <img src="qrcodes/{{ $agendamento->hash }}.png" alt="">
                                 </p>

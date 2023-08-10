@@ -100,7 +100,7 @@ Route::get('pdf2', function(){
 
     $agendamento->dia_semana = $diaSemana[$semana];
 
-    return view('pdf', ['agendamento' => $agendamento]);
+    return view('pdf_melu', ['agendamento' => $agendamento]);
 
     $pdf = PDF::loadView('pdf', ['agendamento' => $agendamento]);
     return $pdf->setPaper('a4')->download('agendamento.pdf');
