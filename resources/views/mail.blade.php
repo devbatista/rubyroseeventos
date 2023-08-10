@@ -125,6 +125,17 @@
                     </tr>
                     <tr>
                         <td>
+                            <div style='text-align: center;'>
+                                <img 
+                                    src="https://rubyroseeventos.com.br/wp-content/uploads/2023/08/AtencaoQRRR.png" 
+                                    alt="atencao"
+                                    style="width: 500px"
+                                >
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div style='font-size: 16px;color: #985EA3;margin: 15px;text-align: center;'>
                                 <p>
                                     {{-- <img src="https://rubyroseeventos.devbatista.com/qrcodes/{{ $data['hash'] }}.png" alt="Qrcode"> --}}
