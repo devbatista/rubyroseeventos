@@ -140,12 +140,13 @@ class CredenciamentoController extends Controller
         ];
 
         foreach ($datas as $data => $array) {
+            $limite = ($data == "09-09-2023") ? 27 : 20;
             foreach ($agendamentos as $agendamento) {
                 if ($data == date('d-m-Y', strtotime($agendamento->data_hora))) {
                     $datas[$data][] = [
                         'total' => $agendamento->total,
                         'horario' => date('H:i', strtotime($agendamento->data_hora)),
-                        'status' => ($agendamento->total < 64) ? 'active' : 'inactive',
+                        'status' => ($agendamento->total < $limite) ? 'active' : 'inactive',
                     ];
                 }
             }
