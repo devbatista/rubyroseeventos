@@ -184,7 +184,7 @@ class CredenciamentoController extends Controller
 
     public function getVagasDisponiveis() {
         $cadastros = Agendamento::count();
-        $total = 64 * 80;
+        $total = ((24*3) * 20) + (18 * 27);
         $disponiveis = $total - $cadastros;
         $disponiveis = ($disponiveis > 0) ? $total - $cadastros : 0;
 
