@@ -119,7 +119,6 @@ class CredenciamentoController extends Controller
         // $this->enviaEmail($data, $melu);
 
         $retorno['list'] = $data;
-        dd($retorno['list']);
 
         return $retorno;
     }
