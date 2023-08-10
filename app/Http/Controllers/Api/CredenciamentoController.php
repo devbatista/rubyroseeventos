@@ -317,8 +317,6 @@ class CredenciamentoController extends Controller
         $pessoa->hash = $data['hash'];
         $pessoa->save();
 
-        dd($pessoa);
-
         return $pessoa;
     }
 
