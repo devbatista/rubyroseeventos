@@ -10,7 +10,7 @@ class CorsMiddleware
     {
         $response = $next($request);
 
-        $response->headers->set('Access-Control-Allow-Origin', 'https://rubyroseeventos.com.br');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'get, post, put, delete, options');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
