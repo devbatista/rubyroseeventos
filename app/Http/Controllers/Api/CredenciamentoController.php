@@ -101,6 +101,7 @@ class CredenciamentoController extends Controller
             $agendamento_melu = $agendamento_rr ? true : false;
         } else {
             $pessoa_melu = $this->addPessoaMelu($data, new PessoaMelu);
+            print_r($pessoa_melu);exit;
             $agendamento_melu = $this->addAgendamentoMelu($data, $pessoa_melu->id, new AgendamentoMelu);
             $agendamento_rr = $agendamento_melu ? true : false;
         }
