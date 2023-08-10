@@ -31,7 +31,7 @@ return [
 
     // 'supports_credentials' => false,
 
-    'paths' => ['api/*'],
+    'paths' => ['api/*', '*'],
 
     'allowed_methods' => ['*'],
 
