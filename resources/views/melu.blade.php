@@ -108,7 +108,7 @@
 
                                 Agendamento concluído com sucesso.<br /><br />
 
-                                Recebemos sua inscrição com sucesso para entrada no showroom Ruby Rose. O convite é nominal e <br />
+                                Recebemos sua inscrição com sucesso para entrada no showroom Melu. O convite é nominal e <br />
                                 intransferível. Para sua segurança, informamos que poderá ser solicitada a apresentação de <br />
                                 documento com foto no momento do acesso junto ao QR code de para confirmação. <br /><br />
                                 
@@ -119,7 +119,7 @@
                                 sua entrada.<br /><br />
                                 <span
                                     style='font-size: 16px;text-align: center;display: block;margin-top: 10px; font-weight: bold'>Aproveite
-                                    a experiência Ruby Rose.</span>
+                                    a experiência Melu.</span>
                             </div>
                         </td>
                     </tr>
