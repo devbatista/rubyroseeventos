@@ -199,6 +199,21 @@ class CredenciamentoController extends Controller
         return $dados;
     }
 
+    public function getVagasDisponiveisMelu() {
+        $cadastros = AgendamentoMelu::count();
+        $total = ((24*3) * 20) + (18 * 27);
+        $disponiveis = $total - $cadastros;
+        $disponiveis = ($disponiveis > 0) ? $total - $cadastros : 0;
+
+        $dados = [
+            'cadastros' => $cadastros,
+            'total de vagas' => $total,
+            'disponiveis' => $disponiveis,
+        ];
+
+        return $dados;
+    }
+
     public function validateRubyRoseQrCode($hash) 
     {
         $retorno = ['error' => null, 'list' => []];

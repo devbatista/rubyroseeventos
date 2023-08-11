@@ -50,6 +50,7 @@ Route::get('/ruby-rose/{hash}', [CredenciamentoController::class, 'validateRubyR
 Route::get('/melu/{hash}', [CredenciamentoController::class, 'validateMeluQrCode']);
 
 Route::get('/vagas-disponiveis', [CredenciamentoController::class, 'getVagasDisponiveis']);
+Route::get('/vagas-disponiveis-melu', [CredenciamentoController::class, 'getVagasDisponiveisMelu']);
 
 Route::get('download-doc', [PdfController::class, 'getPdf']);
 
