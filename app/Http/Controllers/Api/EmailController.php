@@ -21,7 +21,7 @@ class EmailController extends Controller
             if($data) {
                 $diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
                 $semana = date('w', strtotime($data->data_hora));
-                $data->data_hora = $diaSemana[$semana];
+                $data->dia_semana = $diaSemana[$semana];
                 $data = (array)$data;
     
                 Mail::send(new \App\Mail\newCredenciamento($data));
@@ -41,7 +41,7 @@ class EmailController extends Controller
             if($data) {
                 $diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
                 $semana = date('w', strtotime($data->data_hora));
-                $data->data_hora = $diaSemana[$semana];
+                $data->dia_semana = $diaSemana[$semana];
                 $data = (array)$data;
     
                 Mail::send(new \App\Mail\newCredenciamento($data, true));
