@@ -17,6 +17,7 @@ class EmailController extends Controller
         foreach ($emails['emails'] as $email) {
             $data = new Pessoa();
             $data = $data->getPessoasEnviaEmail($email);
+            dd($data);
             
             if($data) {
                 $diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
