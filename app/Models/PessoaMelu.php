@@ -15,7 +15,7 @@ class PessoaMelu extends Model
     public function getPessoasEnviaEmail($email)
     {
         $retorno = DB::table('pessoas_melu as p')
-            ->select('p.id', 'p.nome', 'p.cpf', 'a.data_hora', 'p.email')
+            ->select('p.id', 'p.nome', 'p.cpf', 'a.data_hora', 'p.email', 'p.hash')
             ->join('agendamentos_melu as a', 'a.pessoa', 'p.id')
             ->where('p.email', $email)
             ->first();
