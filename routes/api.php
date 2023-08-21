@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CredenciamentoController;
+use App\Http\Controllers\Api\EmailController;
 use App\Http\Controllers\PdfController;
 // use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\Agendamento;
@@ -23,6 +24,9 @@ use chillerlan\QRCode\QROptions;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/envia_emails_rr', [EmailController::class, 'enviaEmailRR']);
+Route::post('/envia_emails_melu', [EmailController::class, 'enviaEmailMelu']);
 
 // Route::get('/', [CredenciamentoController::class, 'index']);
 Route::get('/teste',[CredenciamentoController::class, 'index']);
