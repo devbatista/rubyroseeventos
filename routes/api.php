@@ -25,6 +25,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/phpinfo', function(){
+    phpinfo();
+});
+
 Route::post('/envia_emails_rr', [EmailController::class, 'enviaEmailRR']);
 Route::post('/envia_emails_melu', [EmailController::class, 'enviaEmailMelu']);
 
