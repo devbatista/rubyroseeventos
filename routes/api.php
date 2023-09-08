@@ -118,3 +118,5 @@ Route::get('read_qrcode', function(){
 
     return view('qrcode', ['data' => $data]);
 });
+
+Route::post('new_cadastro_rr', [CredenciamentoController::class, 'generateNewCadastro']);

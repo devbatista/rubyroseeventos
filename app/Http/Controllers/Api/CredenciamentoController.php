@@ -124,6 +124,65 @@ class CredenciamentoController extends Controller
         return $retorno;
     }
 
+    public function generateNewCadastro(Request $request, $melu = false)
+    {
+        $retorno = ['error' => null, 'list' => []];
+        $data = $request->all();
+
+        $table = ($melu) ? '_melu' : '';
+
+        $validator = Validator::make($data, [
+            'nome' => 'required|string|max:100',
+            'dt_nascimento' => 'required|date_format:d-m-Y',
+            'cpf' => 'required|max:15|cpf|unique:pessoas'.$table.',cpf',
+            'email' => 'required|string|max:100|email|unique:pessoas'.$table.',email',
+            'cidade' => 'required|string|max:100',
+            'estado' => 'required|string|uf|max:2',
+            'telefone' => 'required|string|max:20',
+            'data_hora' => 'required|date_format:d-m-Y H:i',
+            'instagram' => 'nullable|string|max:30',
+        ]);
+
+        if ($validator->fails()) {
+            $retorno['error'] = $validator->errors()->first();
+            return $retorno;
+        }
+
+        $data['dt_nascimento'] = date('Y-m-d', strtotime($data['dt_nascimento']));
+        $data['data_hora'] = date('Y-m-d H:i', strtotime($data['data_hora']));
+
+        $data['hash'] = md5(time());
+        $agendamento_rr = false;
+        $agendamento_melu = false;
+
+        if (!$melu) {
+            $pessoa = $this->addPessoa($data, new Pessoa);
+            $agendamento_rr = $this->addAgendamento($data, $pessoa->id, new Agendamento);
+            $agendamento_melu = $agendamento_rr ? true : false;
+        } else {
+            $pessoa_melu = $this->addPessoaMelu($data, new PessoaMelu);
+            $agendamento_melu = $this->addAgendamentoMelu($data, $pessoa_melu->id, new AgendamentoMelu);
+            $agendamento_rr = $agendamento_melu ? true : false;
+        }
+
+        if (!$agendamento_rr || !$agendamento_melu) {
+            $retorno['error'] = 'Agendamento não concluído, atualize a página e tente novamente';
+            return $retorno;
+        }
+        
+        $data['agendamento'] = (!is_bool($agendamento_rr)) ? $agendamento_rr : $agendamento_melu;
+        
+        $evento = $melu ? 'melu' : 'ruby-rose';
+
+        $this->generateQrCode($data['hash'], $evento);
+
+        $this->enviaEmail($data, $melu);
+        
+        $retorno['list'] = $data;
+
+        return $retorno;
+    }
+
     public function getHorasInativasMelu()
     {
         return $this->getHorasInativas(true);
