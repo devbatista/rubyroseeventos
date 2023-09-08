@@ -185,7 +185,7 @@ class CredenciamentoController extends Controller
 
     public function generateNewCadastroMelu(Request $request)
     {
-        $this->generateNewCadastro($request, true);
+        return $this->generateNewCadastro($request, true);
     }
 
     public function getHorasInativasMelu()
