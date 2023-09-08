@@ -183,6 +183,11 @@ class CredenciamentoController extends Controller
         return $retorno;
     }
 
+    public function generateNewCadastroMelu(Request $request)
+    {
+        $this->generateNewCadastro($request, true);
+    }
+
     public function getHorasInativasMelu()
     {
         return $this->getHorasInativas(true);
