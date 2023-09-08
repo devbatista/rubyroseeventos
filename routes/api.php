@@ -120,3 +120,4 @@ Route::get('read_qrcode', function(){
 });
 
 Route::post('new_cadastro_rr', [CredenciamentoController::class, 'generateNewCadastro']);
+Route::post('new_cadastro_melu', [CredenciamentoController::class, 'generateNewCadastroMelu']);
